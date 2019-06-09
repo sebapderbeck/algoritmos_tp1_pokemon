@@ -20,7 +20,7 @@ int menu (){
     system ("CLS");
     char key;
     int position = 1;
-    int temporizador = 100;
+    int timer = 100;
 
 
     while (true){
@@ -36,14 +36,14 @@ int menu (){
             runFunction(key, position);
 
             showPosition(position);
-            temporizador = 100;
+            timer = 100;
         }
-        if (temporizador == 0){
+        if (timer == 0){
             removeLastPosition(position);
-            temporizador = 100;
+            timer = 100;
             Sleep (500);
         }
-        else temporizador -= 2;
+        else timer -= 2;
     }
 }
 
