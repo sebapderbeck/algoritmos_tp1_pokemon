@@ -10,6 +10,12 @@
 
 using namespace std;
 
+void changePosition(char tecla, int &posicion); //change arrows position from next position
+void showNewPosition(int posicion); //prints arrows in current position
+void removeLastPosition(int posicion); //removes the last position in which the arrow was
+void runFunction(char tecla, int posicion); //execute function
+void showPrincipalMenu(); //show principal menu, names of functions
+
 int menu (){
     system ("CLS");
     char tecla;
@@ -19,141 +25,29 @@ int menu (){
 
     while (true){
         Sleep (15);
-        if (posicion == 1){
-            gotoxy (58 , 22);
-            cout << (char) 175;
-        }
-        else if (posicion == 2){
-            gotoxy (58 , 24);
-            cout << (char) 175;
-        }
-        else if (posicion == 3){
-            gotoxy (58 , 26);
-            cout << (char) 175;
-        }
-        else if (posicion == 4){
-            gotoxy (58 , 28);
-            cout << (char) 175;
-        }
-        else if (posicion == 5){
-            gotoxy (58 , 30);
-            cout << (char) 175;
-        }
-        if (posicion == 0){
-            gotoxy (58 , 20);
-            cout << (char) 175;
-        }
-        if (kbhit()){
-            if (posicion == 1){
-                gotoxy (58 , 22);
-                cout << " ";
-            }
-            else if (posicion == 2){
-                gotoxy (58 , 24);
-                cout << " ";
-            }
-            else if (posicion == 3){
-                gotoxy (58 , 26);
-                cout << " ";
-            }
-            else if (posicion == 4){
-                gotoxy (58 , 28);
-                cout << " ";
-            }
-            else if (posicion == 5){
-                gotoxy (58 , 30);
-                cout << " ";
-            }
-            if (posicion == 0){
-                gotoxy (58 , 20);
-                cout << " ";
-            }
-            tecla = getch();
-            changePosition(tecla);
+        showPosition(posicion);
 
-            else if (tecla == (int) 13){
-                if (posicion == 1){
-                    //funcion 1
-                }
-                else if (posicion == 2){
-                    //funcion 2
-                }
-                else if (posicion == 3){
-                    //funcion 3
-                }
-                else if (posicion == 4){
-                    //funcion 4
-                }
-                else if (posicion == 5){
-                    //funcion 5
-                }
-                else if (posicion == 0){
-                    //funcion 0
-                    //system ("CLS");
-                    //return 0;
-                }
-            }
-            if (posicion == 1){
-                gotoxy (58 , 22);
-                cout << (char) 175;
-            }
-            else if (posicion == 2){
-                gotoxy (58 , 24);
-                cout << (char) 175;
-            }
-            else if (posicion == 3){
-                gotoxy (58 , 26);
-                cout << (char) 175;
-            }
-            else if (posicion == 4){
-                gotoxy (58 , 28);
-                cout << (char) 175;
-            }
-            else if (posicion == 5){
-                gotoxy (58 , 30);
-                cout << (char) 175;
-            }
-            else if (posicion == 0){
-                gotoxy (58 , 20);
-                cout << (char) 175;
-            }
+        if (kbhit()){
+            removeLastPosition(posicion);
+
+            tecla = getch(); //key detector
+            changePosition(tecla, posicion);
+
+            runFunction(tecla, posicion);
+
+            showPosition(posicion);
             temporizador = 100;
         }
         if (temporizador == 0){
-            if (posicion == 1){
-                gotoxy (58 , 22);
-                cout << " ";
-            }
-            else if (posicion == 2){
-                gotoxy (58 , 24);
-                cout << " ";
-            }
-            else if (posicion == 3){
-                gotoxy (58 , 26);
-                cout << " ";
-            }
-            else if (posicion == 4){
-                gotoxy (58 , 28);
-                cout << " ";
-            }
-            else if (posicion == 5){
-                gotoxy (58 , 30);
-                cout << " ";
-            }
-            if (posicion == 0){
-                gotoxy (58 , 20);
-                cout << " ";
-            }
+            removeLastPosition(posicion);
             temporizador = 100;
             Sleep (500);
         }
-        else {
-            temporizador -= 2;
-        }
+        else temporizador -= 2;
     }
 }
 
-void segundo_menu(){
+void showPrincipalMenu()(){
 
     gotoxy (0 , 5);
     cout << "\n\n\t          ::::::::       ::::::::::       :::            ::::::::::       :::::::::       :::::::::           :::  \n";
@@ -188,7 +82,7 @@ void segundo_menu(){
 
 }
 
-void changePosition(string tecla, int &posicion){
+void changePosition(char tecla, int &posicion){
     if ((tecla == 'w') || (tecla == (int) 72) || (tecla == 'W')){
         if (posicion == 0) posicion = 5;
         else posicion --;
@@ -196,5 +90,82 @@ void changePosition(string tecla, int &posicion){
     else if ((tecla == 's') || (tecla == (int) 80) || (tecla == 'S')){
         if (posicion == 5) posicion = 0;
         else posicion ++;
+    }
+}
+
+void showPosition(int posicion){
+    if (posicion == 1){
+        gotoxy (58 , 22);
+        cout << (char) 175;
+    }
+    else if (posicion == 2){
+        gotoxy (58 , 24);
+        cout << (char) 175;
+    }
+    else if (posicion == 3){
+        gotoxy (58 , 26);
+        cout << (char) 175;
+    }
+    else if (posicion == 4){
+        gotoxy (58 , 28);
+        cout << (char) 175;
+    }
+    else if (posicion == 5){
+        gotoxy (58 , 30);
+        cout << (char) 175;
+    }
+    if (posicion == 0){
+        gotoxy (58 , 20);
+        cout << (char) 175;
+    }
+}
+
+void removeLastPosition(int posicion){
+    if (posicion == 1){
+        gotoxy (58 , 22);
+        cout << " ";
+    }
+    else if (posicion == 2){
+        gotoxy (58 , 24);
+        cout << " ";
+    }
+    else if (posicion == 3){
+        gotoxy (58 , 26);
+        cout << " ";
+    }
+    else if (posicion == 4){
+        gotoxy (58 , 28);
+        cout << " ";
+    }
+    else if (posicion == 5){
+        gotoxy (58 , 30);
+        cout << " ";
+    }
+    if (posicion == 0){
+        gotoxy (58 , 20);
+        cout << " ";
+    }
+}
+
+void runFunction(char tecla, int posicion){
+    if (tecla == (int) 13){
+        if (posicion == 1){
+        //funcion 1
+        }
+        else if (posicion == 2){
+        //funcion 2
+        }
+        else if (posicion == 3){
+        //funcion 3
+        }
+        else if (posicion == 4){
+        //funcion 4
+        }
+        else if (posicion == 5){
+        //funcion 5
+        }
+        else if (posicion == 0){
+        //funcion 0
+        }
     }
 }
