@@ -10,15 +10,15 @@
 
 using namespace std;
 
-void changePosition(char tecla, int &position); //change arrows position from next position
+void changePosition(char key, int &position); //change arrows position from next position
 void showNewPosition(int position); //prints arrows in current position
 void removeLastPosition(int position); //removes the last position in which the arrow was
-void runFunction(char tecla, int position); //execute function
+void runFunction(char key, int position); //execute function
 void showPrincipalMenu(); //show principal menu, names of functions
 
 int menu (){
     system ("CLS");
-    char tecla;
+    char key;
     int position = 1;
     int temporizador = 100;
 
@@ -30,10 +30,10 @@ int menu (){
         if (kbhit()){
             removeLastPosition(position);
 
-            tecla = getch(); //key detector
-            changePosition(tecla, position);
+            key = getch(); //key detector
+            changePosition(key, position);
 
-            runFunction(tecla, position);
+            runFunction(key, position);
 
             showPosition(position);
             temporizador = 100;
@@ -82,12 +82,12 @@ void showPrincipalMenu()(){
 
 }
 
-void changePosition(char tecla, int &position){
-    if ((tecla == 'w') || (tecla == (int) 72) || (tecla == 'W')){
+void changePosition(char key, int &position){
+    if ((key == 'w') || (key == (int) 72) || (key == 'W')){
         if (position == 0) position = 5;
         else position --;
     }
-    else if ((tecla == 's') || (tecla == (int) 80) || (tecla == 'S')){
+    else if ((key == 's') || (key == (int) 80) || (key == 'S')){
         if (position == 5) position = 0;
         else position ++;
     }
@@ -147,8 +147,8 @@ void removeLastPosition(int position){
     }
 }
 
-void runFunction(char tecla, int position){
-    if (tecla == (int) 13){
+void runFunction(char key, int position){
+    if (key == (int) 13){
         if (position == 1){
         //funcion 1
         }
