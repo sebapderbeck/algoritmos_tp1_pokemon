@@ -47,7 +47,7 @@ int menu (){
     }
 }
 
-void showPrincipalMenu()(){
+void showPrincipalMenu (){
 
     gotoxy (0 , 5);
     cout << "\n\n\t          ::::::::       ::::::::::       :::            ::::::::::       :::::::::       :::::::::           :::  \n";
@@ -82,7 +82,7 @@ void showPrincipalMenu()(){
 
 }
 
-void changePosition(char key, int &position){
+void changePosition (char key, int &position){
     if ((key == 'w') || (key == (int) 72) || (key == 'W')){
         if (position == 0) position = 5;
         else position --;
@@ -93,7 +93,7 @@ void changePosition(char key, int &position){
     }
 }
 
-void showPosition(int position){
+void showPosition (int position){
     if (position == 1){
         gotoxy (58 , 22);
         cout << (char) 175;
@@ -120,7 +120,7 @@ void showPosition(int position){
     }
 }
 
-void removeLastPosition(int position){
+void removeLastPosition (int position){
     if (position == 1){
         gotoxy (58 , 22);
         cout << " ";
@@ -147,7 +147,7 @@ void removeLastPosition(int position){
     }
 }
 
-void runFunction(char key, int position){
+void runFunction (char key, int position){
     if (key == (int) 13){
         if (position == 1){
         //funcion 1
