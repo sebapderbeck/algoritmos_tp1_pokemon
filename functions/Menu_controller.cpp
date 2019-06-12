@@ -15,7 +15,7 @@ void showNewPosition(int position); //prints arrows in current position
 void removeLastPosition(int position); //removes the last position in which the arrow was
 void runFunction(char key, int position); //execute function
 void showPrincipalMenu(); //show principal menu, names of functions
-void ShowPokedexInformationMenu(); //show second menu for load data in pokedex
+void showPokedexInformationMenu(); //show second menu for load data in pokedex
 
 int menu (){
     system ("CLS");
@@ -47,13 +47,16 @@ int menu (){
         else timer -= 2;
     }
 }
-void ShowPokedexInformationMenu (){
+void showPokedexInformationMenu (){
     system ("CLS");
     gotoxy (60 , 22);
-    cout << "   INGRESAR INFORMACION MANUALMENTE    ";
+    cout << "   INGRESAR INFORMACION MANUALMENTE      ";
     Sleep(50);
     gotoxy (60 , 24);
-    cout << "   INGRESAR INFORMACION DE UN ARCHIVO  ";
+    cout << "   INGRESAR INFORMACION DE UN ARCHIVO    ";
+    Sleep(50);
+    gotoxy (60 , 26);
+    cout << "                  SALIR                  ";
 }
 
 
