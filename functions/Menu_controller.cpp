@@ -15,6 +15,7 @@ void showNewPosition(int position); //prints arrows in current position
 void removeLastPosition(int position); //removes the last position in which the arrow was
 void runFunction(char key, int position); //execute function
 void showPrincipalMenu(); //show principal menu, names of functions
+void ShowPokedexInformationMenu(); //show second menu for load data in pokedex
 
 int menu (){
     system ("CLS");
@@ -46,39 +47,50 @@ int menu (){
         else timer -= 2;
     }
 }
-
-void showPrincipalMenu (){
-
-    gotoxy (0 , 5);
-    cout <<"   ::::::::          ::::::::::       :::        :::::::::::       :::::::::           ::: \n";
-    Sleep(50);
-    cout <<" :+:    :+:         :+:              :+:            :+:           :+:    :+:        :+: :+: \n";
-    Sleep(50);
-    cout <<" +:+               +:+              +:+            +:+           +:+    +:+       +:+   +:+ \n";
-    Sleep(50);
-    cout <<" +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+       +#++:++#++: \n";
-    Sleep(50);
-    cout <<"        +#+      +#+              +#+            +#+           +#+             +#+     +#+ \n";
-    Sleep(50);
-    cout <<"#+#    #+#      #+#              #+#            #+#           #+#             #+#     #+# \n";
-    Sleep(50);
-    cout <<"########       ##########       ########## ###########       ###             ###     ### \n";
-
+void ShowPokedexInformationMenu (){
+    system ("CLS");
     gotoxy (60 , 22);
-    cout << "   Nombre de funcion ";
+    cout << "   INGRESAR INFORMACION MANUALMENTE    ";
     Sleep(50);
     gotoxy (60 , 24);
-    cout << "   Nombre de funcion ";
+    cout << "   INGRESAR INFORMACION DE UN ARCHIVO  ";
+}
+
+
+
+
+void showPrincipalMenu (){
+    system ("CLS");
+    gotoxy (0 , 5);
+    cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::           :::  \n ";
+    Sleep(50);
+    cout << " :+:    :+:         :+:              :+:            :+:           :+:    :+:        :+: :+: \n ";
+    Sleep(50);
+    cout << " +:+               +:+              +:+            +:+           +:+    +:+       +:+   +:+ \n ";
+    Sleep(50);
+    cout << " +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+       +#++:++#++: \n ";
+    Sleep(50);
+    cout << "        +#+      +#+              +#+            +#+           +#+             +#+     +#+  \n ";
+    Sleep(50);
+    cout << "#+#    #+#      #+#              #+#            #+#           #+#             #+#     #+#   \n ";
+    Sleep(50);
+    cout << "########       ##########       ########## ###########       ###             ###     ###    \n ";
+
+    gotoxy (60 , 22);
+    cout << "   INGRESAR INFORMACION EN EL POKEDEX    ";
+    Sleep(50);
+    gotoxy (60 , 24);
+    cout << "   MOSTRAR ESTADISTICAS DEL POKEDEX      ";
     Sleep(50);
     gotoxy (60 , 26);
-    cout << "  Nombre de funcion";
-    Sleep(50);
-    gotoxy (60 , 28);
-    cout << " Nombre de funcion";
-    Sleep(50);
-    gotoxy (60 , 30);
-    cout << " Nombre de funcion";
-    Sleep(50);
+    cout << "                  SALIR                  ";
+    //Sleep(50);
+    //gotoxy (60 , 28);
+    //cout << "             ";
+    //Sleep(50);
+    //gotoxy (60 , 30);
+    //cout << "             ";
+    //Sleep(50);
 
 }
 
@@ -149,9 +161,8 @@ void removeLastPosition (int position){
 
 void runFunction (char key, int position){
     if (key == (int) 13){
-        if (position == 1){
-        //funcion 1
-        }
+        if (position == 1) ShowPokedexInformationMenu();
+
         else if (position == 2){
         //funcion 2
         }
