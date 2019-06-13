@@ -165,5 +165,5 @@ void runPrincipalFunctions(char key, int position, int principal_secondary_menu)
 }
 
 void goodbyeMessage(){
-    cout <<"CHAU PONEME UN 10";
+    cout << "CHAU PONEME UN 10";
 }
