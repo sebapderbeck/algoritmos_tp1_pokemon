@@ -93,7 +93,7 @@ void showPrincipalMenu(int principal_secondary_menu) {
         cout << "   INGRESAR INFORMACION EN EL POKEDEX    ";
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "   MOSTRAR ESTADISTICAS DEL POKEDEX      ";
+        cout << "    MOSTRAR ESTADISTICAS DEL POKEDEX     ";
         Sleep(50);
         gotoxy (32 , 26);
         cout << "                  SALIR                  ";
@@ -101,7 +101,7 @@ void showPrincipalMenu(int principal_secondary_menu) {
     else if(principal_secondary_menu == 1){             //Set information for pokedex (menu)
         showHeaderMenu(principal_secondary_menu);
         gotoxy (32 , 22);
-        cout << "   INGRESAR INFORMACION MANUALMENTE      ";
+        cout << "    INGRESAR INFORMACION MANUALMENTE     ";
         Sleep(50);
         gotoxy (32 , 24);
         cout << "   INGRESAR INFORMACION DE UN ARCHIVO    ";
