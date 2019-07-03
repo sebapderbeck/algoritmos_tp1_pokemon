@@ -32,6 +32,7 @@ void getInformationFromUser();                  //non-created function
 
 int main() {
     system ("CLS");
+    system("color 07");
     char key;
     int position = 1;
     int timer = 100;
