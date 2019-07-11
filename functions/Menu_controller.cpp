@@ -12,7 +12,7 @@ using namespace std;
 
 void gotoxy(int x,int y); //set cursor in position(x,y) into terminal
 
-void ocultar_cursor ();
+void hideCursor();
 
 void goodbyeMessage(); //exit message
 
@@ -27,8 +27,8 @@ void showPrincipalMenu(int principal_secondary_menu);                           
 void showHeaderMenu(int principal_secondary_menu);                                    //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
-void getInformationFromFile();                  //non-created function
-void getInformationFromUser();                  //non-created function
+void getInformationFromFile();                  //function get information from file
+void showMenuToEnterInformationFromUser();      //function get information from user, ask how many records do you want to load
 
 int main() {
     system ("CLS");
@@ -40,7 +40,7 @@ int main() {
 
     showPrincipalMenu(principal_secondary_menu);
     while (true) {
-        ocultar_cursor();
+        hideCursor();
         Sleep (15);
         showNewPosition(position);
 
@@ -176,6 +176,19 @@ void showHeaderMenu(int principal_secondary_menu){
         gotoxy (20 , 15);
         cout << "ESTADISTICAS DEL POKEDEX";
     }
+    else if (principal_secondary_menu == 11){
+        gotoxy (19 , 14);
+        cout << (char) 201; //Upper left corner
+        gotoxy (19 , 16);
+        cout << (char) 200; //Lower left corner
+        gotoxy (64 , 14);
+        cout << (char) 187; //Upper right corner
+        gotoxy (64 , 16);
+        cout << (char) 188; //Lower right corner
+
+        gotoxy (20 , 15);
+        cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
+    }
 }
 
 void removeLastPosition(int position) {
@@ -201,7 +214,7 @@ void runPrincipalFunctions(char key, int position, int principal_secondary_menu)
             else if (position == 3) goodbyeMessage();
         }
         else if (principal_secondary_menu == 1) {
-            if (position == 1) getInformationFromUser();
+            if (position == 1) showMenuToEnterInformationFromUser();
             else if (position == 2) getInformationFromFile();
             else if (position == 3) showPrincipalMenu(0);
         }
@@ -209,7 +222,7 @@ void runPrincipalFunctions(char key, int position, int principal_secondary_menu)
     }
 }
 
-void gotoxy(int x,int y){
+void gotoxy(int x,int y) {
     HANDLE hcon;
     hcon = GetStdHandle(STD_OUTPUT_HANDLE);
     COORD dwPos;
@@ -218,7 +231,7 @@ void gotoxy(int x,int y){
     SetConsoleCursorPosition(hcon,dwPos);
 }
 
-void ocultar_cursor (){
+void hideCursor() {
     HANDLE hCon;
     hCon = GetStdHandle (STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cci;
@@ -227,17 +240,25 @@ void ocultar_cursor (){
     SetConsoleCursorInfo (hCon , &cci);
 }
 
-void goodbyeMessage(){
+void goodbyeMessage() {
     system("CLS");
     gotoxy(30,5);
     cout << "CHAU PONEME UN 10";
     exit(0);
 }
 
-void getInformationFromFile(){
+void getInformationFromFile() {
+    ifstream filePokedex; //created object filePokedex of type ifstream
+    int lenght = 500;     //file size
+    char * buffer = new char [lenght]; //variable temporal
+    filePokedex.open("pokedex.dat", ios::in | ios::binary); //open file
+
+    while(!filePokedex.eof()) {
+        filePokedex.read(buffer, lenght);
+    }
+    filePokedex.close();
+}
+
+void showMenuToEnterInformationFromUser() {
 
 }
-void getInformationFromUser(){
-
-}
-
