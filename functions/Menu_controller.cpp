@@ -30,6 +30,9 @@ void showHeaderMenu(int principal_secondary_menu);                              
 void getInformationFromFile();                  //function get information from file
 void showMenuToEnterInformationFromUser();      //function get information from user, ask how many records do you want to load
 
+/* functios that control pokemons stats */
+void showPokemonsGroupByType(); //function show all types of pokemons order by level
+
 int main() {
     system ("CLS");
     system("color 07");
@@ -113,13 +116,39 @@ void showPrincipalMenu(int principal_secondary_menu) {
     else if(principal_secondary_menu == 2){             //Stats from pokedex (menu)
         showHeaderMenu(principal_secondary_menu);
         gotoxy (32 , 22);
-        cout << "   MOSTRAR POKEMONS MAS FUERTES            ";
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS POR TIPO  ";
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "   MOSTRAR POKEMONS MAS DEBILES            ";
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS POR NIVEL ";
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "   MOSTRAR POKEMONS CON MAYOR NIVEL A 500  ";
+        cout << "   MOSTRAR POKEMONS DEVIDIDO POR NIVEL    "; //Higher level and lower level
+        Sleep(50);
+        gotoxy (32 , 26);
+        cout << "                   VOLVER                 "; //back to principal menu
+
+    }
+    else if(principal_secondary_menu == 22){             //Stats from pokedex ( sub menu from show pokemons group by level)
+        showHeaderMenu(principal_secondary_menu);
+        gotoxy (32 , 22);
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL MAYOR A 500 ";
+        Sleep(50);
+        gotoxy (32 , 24);
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL MENOR A 500 ";
+        Sleep(50);
+        gotoxy (32 , 26);
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL IGUAL A 500  "; //Higher level and lower level
+    }
+    else if(principal_secondary_menu == 23){             //Stats from pokedex ( sub menu from show pokemons group by type )
+        showHeaderMenu(principal_secondary_menu);
+        gotoxy (32 , 22);
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON MAYOR NIVEL POR TIPO ";
+        Sleep(50);
+        gotoxy (32 , 24);
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON MENOR NIVEL POR TIPO ";
+        Sleep(50);
+        gotoxy (32 , 26);
+        cout << "                           VOLVER                        "; //Higher level and lower level
     }
 }
 
@@ -163,19 +192,6 @@ void showHeaderMenu(int principal_secondary_menu){
         gotoxy (20 , 15);
         cout << "INFORMACION EN EL POKEDEX";
     }
-    else if (principal_secondary_menu == 2){
-        gotoxy (19 , 14);
-        cout << (char) 201; //Upper left corner
-        gotoxy (19 , 16);
-        cout << (char) 200; //Lower left corner
-        gotoxy (44 , 14);
-        cout << (char) 187; //Upper right corner
-        gotoxy (44 , 16);
-        cout << (char) 188; //Lower right corner
-
-        gotoxy (20 , 15);
-        cout << "ESTADISTICAS DEL POKEDEX";
-    }
     else if (principal_secondary_menu == 11){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
@@ -189,6 +205,33 @@ void showHeaderMenu(int principal_secondary_menu){
         gotoxy (20 , 15);
         cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
     }
+    else if (principal_secondary_menu == 2){
+        gotoxy (19 , 14);
+        cout << (char) 201; //Upper left corner
+        gotoxy (19 , 16);
+        cout << (char) 200; //Lower left corner
+        gotoxy (44 , 14);
+        cout << (char) 187; //Upper right corner
+        gotoxy (44 , 16);
+        cout << (char) 188; //Lower right corner
+
+        gotoxy (20 , 15);
+        cout << "ESTADISTICAS DEL POKEDEX";
+    }
+    else if (principal_secondary_menu == 22){
+        gotoxy (19 , 14);
+        cout << (char) 201; //Upper left corner
+        gotoxy (19 , 16);
+        cout << (char) 200; //Lower left corner
+        gotoxy (50 , 14);
+        cout << (char) 187; //Upper right corner
+        gotoxy (50 , 16);
+        cout << (char) 188; //Lower right corner
+
+        gotoxy (20 , 15);
+        cout << "CANTIDAD DE POKEMONS POR NIVEL";
+    }
+
 }
 
 void removeLastPosition(int position) {
@@ -217,6 +260,11 @@ void runPrincipalFunctions(char key, int position, int principal_secondary_menu)
             if (position == 1) showMenuToEnterInformationFromUser();
             else if (position == 2) getInformationFromFile();
             else if (position == 3) showPrincipalMenu(0);
+        }
+        else if (principal_secondary_menu == 2) {
+            if (position == 1) showPokemonsGroupByType(); //showPokemonsGroupByType
+            else if (position == 2) showPrincipalMenu(22); //showPokemonsGroupByLevel
+            else if (position == 3) showPrincipalMenu(23);
         }
 
     }
@@ -260,5 +308,9 @@ void getInformationFromFile() {
 }
 
 void showMenuToEnterInformationFromUser() {
+
+}
+
+void showPokemonsGroupByType(){
 
 }
