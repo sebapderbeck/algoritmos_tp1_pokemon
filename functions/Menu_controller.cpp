@@ -17,14 +17,15 @@ void hideCursor();
 void goodbyeMessage(); //exit message
 
 /*  functions that control the position  */
+void resetPosition(int &position);                      //reset cursor position to initial position
 void changePosition(char key, int &position);           //change arrows position from next position
 void showNewPosition(int position);                     //prints arrows in current position
 void removeLastPosition(int position);                  //removes the last position in which the arrow was
 
 /*  functions that control the menu  */
-void runPrincipalFunctions(char key, int position, int &principal_secondary_menu);     //principal function for show second menu
-void showPrincipalMenu(int &principal_secondary_menu);                                 //show principal menu, names of functions
-void showHeaderMenu(int &principal_secondary_menu);                                    //show last menu for know where are you from
+void runPrincipalFunctions(char key, int position, int &menu_selector);     //principal function for show second menu
+void showPrincipalMenu(int &menu_selector);                                 //show principal menu, names of functions
+void showHeaderMenu(int menu_selector);                                    //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
 void getInformationFromFile();                  //function get information from file
@@ -46,8 +47,8 @@ int main() {
     char key;
     int position = 1;
     int timer = 100;
-    int principal_secondary_menu = 0;
-    showPrincipalMenu(principal_secondary_menu);
+    int menu_selector = 0;
+    showPrincipalMenu(menu_selector);
 
     while (true) {
         hideCursor();
@@ -61,7 +62,7 @@ int main() {
 
             changePosition(key, position);
 
-            runPrincipalFunctions(key, position, principal_secondary_menu);
+            runPrincipalFunctions(key, position, menu_selector);
 
             showNewPosition(position);
             timer = 100;
@@ -77,9 +78,9 @@ int main() {
 }
 
 
-void showPrincipalMenu(int &principal_secondary_menu) {
+void showPrincipalMenu(int &menu_selector) {
     system ("CLS");
-    if (principal_secondary_menu == 0) {                //Principal Menu
+    if (menu_selector == 0) {                //Principal Menu
         gotoxy (30 , 5);
         cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::           :::  \n ";
         Sleep(50);
@@ -110,8 +111,9 @@ void showPrincipalMenu(int &principal_secondary_menu) {
         gotoxy (32 , 26);
         cout << "                  SALIR                  ";
     }
-    else if(principal_secondary_menu == 1){             //Set information for pokedex (menu)
-        showHeaderMenu(principal_secondary_menu);
+    else if(menu_selector == 1){             //Set information for pokedex (menu)
+        showHeaderMenu(menu_selector);
+        Sleep(50);
         gotoxy (32 , 22);
         cout << "    INGRESAR INFORMACION MANUALMENTE     ";
         Sleep(50);
@@ -121,8 +123,9 @@ void showPrincipalMenu(int &principal_secondary_menu) {
         gotoxy (32 , 26);
         cout << "                 VOLVER                  ";
     }
-    else if(principal_secondary_menu == 2){             //Stats from pokedex (menu)
-        showHeaderMenu(principal_secondary_menu);
+    else if(menu_selector == 2){             //Stats from pokedex (menu)
+        showHeaderMenu(menu_selector);
+        Sleep(50);
         gotoxy (32 , 22);
         cout << "   MOSTRAR CANTIDAD DE POKEMONS POR TIPO  ";
         Sleep(50);
@@ -132,8 +135,9 @@ void showPrincipalMenu(int &principal_secondary_menu) {
         gotoxy (32 , 26);
         cout << "   MOSTRAR POKEMONS DEVIDIDO POR NIVEL    "; //Higher level and lower level
     }
-    else if(principal_secondary_menu == 22){             //Stats from pokedex ( sub menu from show pokemons group by level)
-        showHeaderMenu(principal_secondary_menu);
+    else if(menu_selector == 22){             //Stats from pokedex ( sub menu from show pokemons group by level)
+        showHeaderMenu(menu_selector);
+        Sleep(50);
         gotoxy (32 , 22);
         cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL MAYOR A 500 ";
         Sleep(50);
@@ -143,8 +147,8 @@ void showPrincipalMenu(int &principal_secondary_menu) {
         gotoxy (32 , 26);
         cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL IGUAL A 500  "; //Higher level and lower level
     }
-    else if(principal_secondary_menu == 23){             //Stats from pokedex ( sub menu from show pokemons group by type )
-        showHeaderMenu(principal_secondary_menu);
+    else if(menu_selector == 23){             //Stats from pokedex ( sub menu from show pokemons group by type )
+        showHeaderMenu(menu_selector);
         gotoxy (32 , 22);
         cout << "   MOSTRAR POKEMONS CON MAYOR NIVEL POR TIPO "; // Higher level
         Sleep(50);
@@ -154,6 +158,10 @@ void showPrincipalMenu(int &principal_secondary_menu) {
         gotoxy (32 , 26);
         cout << "                   VOLVER                    "; // back to stats menu
     }
+}
+
+void resetPosition(int &position){
+    position = 1;
 }
 
 void changePosition(char key, int &position) {
@@ -171,7 +179,6 @@ void showNewPosition(int position) {
     if (position == 1) gotoxy (30 , 22);
     else if (position == 2) gotoxy (30 , 24);
     else if (position == 3) gotoxy (30 , 26);
-    else if (position == 4) gotoxy (30 , 28);
     cout << (char) 175;
 }
 
@@ -179,12 +186,11 @@ void removeLastPosition(int position) {
     if (position == 1) gotoxy (30 , 22);
     else if (position == 2) gotoxy (30 , 24);
     else if (position == 3) gotoxy (30 , 26);
-    else if (position == 4) gotoxy (30 , 28);
     cout << " ";
 }
 
-void showHeaderMenu(int &principal_secondary_menu) {
-    if (principal_secondary_menu == 1){
+void showHeaderMenu(int menu_selector) {
+    if (menu_selector == 1){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
@@ -197,7 +203,7 @@ void showHeaderMenu(int &principal_secondary_menu) {
         gotoxy (20 , 15);
         cout << "INFORMACION EN EL POKEDEX";
     }
-    else if (principal_secondary_menu == 11){
+    else if (menu_selector == 11){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
@@ -210,7 +216,7 @@ void showHeaderMenu(int &principal_secondary_menu) {
         gotoxy (20 , 15);
         cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
     }
-    else if (principal_secondary_menu == 2){
+    else if (menu_selector == 2){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
@@ -223,7 +229,7 @@ void showHeaderMenu(int &principal_secondary_menu) {
         gotoxy (20 , 15);
         cout << "ESTADISTICAS DEL POKEDEX";
     }
-    else if (principal_secondary_menu == 22){
+    else if (menu_selector == 22){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
@@ -236,7 +242,7 @@ void showHeaderMenu(int &principal_secondary_menu) {
         gotoxy (20 , 15);
         cout << "CANTIDAD DE POKEMONS POR NIVEL";
     }
-    else if (principal_secondary_menu == 23){
+    else if (menu_selector == 23){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
@@ -251,65 +257,66 @@ void showHeaderMenu(int &principal_secondary_menu) {
     }
 }
 
-void runPrincipalFunctions(char key, int position, int &principal_secondary_menu) {
-    if (key == (int) 13) { //enter key
-        if (principal_secondary_menu == 0) {
+void runPrincipalFunctions(char key, int position, int &menu_selector) {
+    if (key == (int) 13) {  //enter key
+        if (menu_selector == 0) {
             if (position == 1) {
-                principal_secondary_menu = 1;
-                showPrincipalMenu(principal_secondary_menu);
+                menu_selector = 1;
+                showPrincipalMenu(menu_selector);
             }
             else if (position == 2) {
-                principal_secondary_menu = 2;
-                showPrincipalMenu(principal_secondary_menu);
+                menu_selector = 2;
+                showPrincipalMenu(menu_selector);
             }
             else if (position == 3) goodbyeMessage();  //close program
         }
-        else if (principal_secondary_menu == 1) {
+        else if (menu_selector == 1) {
             if (position == 1) showMenuToEnterInformationFromUser();
             else if (position == 2) getInformationFromFile();
             else if (position == 3) {
-                principal_secondary_menu = 0;
-                showPrincipalMenu(principal_secondary_menu); //back to principal menu
+                menu_selector = 0;
+                showPrincipalMenu(menu_selector); //back to principal menu
             }
         }
-        else if (principal_secondary_menu == 2) {
+        else if (menu_selector == 2) {
             if (position == 1) showPokemonsGroupByType();  // show Pokemons Group By Type
             else if (position == 2) {
-                principal_secondary_menu = 22;
-                showPrincipalMenu(principal_secondary_menu); // show Pokemons Group By Level
+                menu_selector = 22;
+                showPrincipalMenu(menu_selector); // show Pokemons Group By Level
             }
             else if (position == 3) {
-                principal_secondary_menu = 23;
-                showPrincipalMenu(principal_secondary_menu); // show Pokemons divided by level
+                menu_selector = 23;
+                showPrincipalMenu(menu_selector); // show Pokemons divided by level
             }
         }
-        else if (principal_secondary_menu == 22) {
+        else if (menu_selector == 22) {
             if (position == 1) showPokemonsGroupByMaxLevel();      // show Pokemons Group By Max level, more than 500
             else if (position == 2) showPokemonsGroupByMinLevel(); // show Pokemons Group By Min level, less than 500
             else if (position == 3) showPokemonsGroupByLevel();    // show Pokemons Group By level equals to 500
             else if (position == 4){
-                principal_secondary_menu = 2;
-                showPrincipalMenu(principal_secondary_menu);
+                menu_selector = 2;
+                showPrincipalMenu(menu_selector);
             }
         }
-        else if (principal_secondary_menu == 23) {
+        else if (menu_selector == 23) {
             if (position == 1) showPokemonsWithHighestLevel();  // Show pokemon with the highest level
             else if (position == 2) showPokemonWithLessLevel(); // Show the pokemon with less level
             else if (position == 3) {
-                principal_secondary_menu = 2;
-                showPrincipalMenu(principal_secondary_menu);
+                menu_selector = 2;
+                showPrincipalMenu(menu_selector);
             }
         }
+        resetPosition(position);
     }
     if (key == (int) 27) { // escape key
-        if (principal_secondary_menu == 0) goodbyeMessage();
-        else if (principal_secondary_menu == 1 || principal_secondary_menu == 2) {
-            principal_secondary_menu = 0;
-            showPrincipalMenu(principal_secondary_menu);
+        if (menu_selector == 0) goodbyeMessage();
+        else if (menu_selector == 1 || menu_selector == 2) {
+            menu_selector = 0;
+            showPrincipalMenu(menu_selector);
         }
-        else if (principal_secondary_menu == 22 || principal_secondary_menu == 23){
-            principal_secondary_menu = 2;
-            showPrincipalMenu(principal_secondary_menu);
+        else if (menu_selector == 22 || menu_selector == 23){
+            menu_selector = 2;
+            showPrincipalMenu(menu_selector);
         }
     }
 }
