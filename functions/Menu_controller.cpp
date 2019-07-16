@@ -23,8 +23,8 @@ void showNewPosition(int position);                     //prints arrows in curre
 void removeLastPosition(int position);                  //removes the last position in which the arrow was
 
 /*  functions that control the menu  */
-void runPrincipalFunctions(char key, int position, int &menu_selector);     //principal function for show second menu
-void showPrincipalMenu(int &menu_selector);                                 //show principal menu, names of functions
+void runPrincipalFunctions(char key, int &position, int &menu_selector);     //principal function for show second menu
+void showPrincipalMenu(int menu_selector);                                 //show principal menu, names of functions
 void showHeaderMenu(int menu_selector);                                    //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
@@ -78,28 +78,28 @@ int main() {
 }
 
 
-void showPrincipalMenu(int &menu_selector) {
+void showPrincipalMenu(int menu_selector) {
     system ("CLS");
     if (menu_selector == 0) {                //Principal Menu
-        gotoxy (30 , 5);
+        gotoxy (15 , 5);
         cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::           :::  \n ";
         Sleep(50);
-        gotoxy (30 , 6);
+        gotoxy (15 , 6);
         cout << " :+:    :+:         :+:              :+:            :+:           :+:    :+:        :+: :+: \n ";
         Sleep(50);
-        gotoxy (30 , 7);
+        gotoxy (15 , 7);
         cout << " +:+               +:+              +:+            +:+           +:+    +:+       +:+   +:+ \n ";
         Sleep(50);
-        gotoxy (30 , 8);
+        gotoxy (15 , 8);
         cout << " +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+       +#++:++#++: \n ";
         Sleep(50);
-        gotoxy (30 , 9);
+        gotoxy (15 , 9);
         cout << "        +#+      +#+              +#+            +#+           +#+             +#+     +#+  \n ";
         Sleep(50);
-        gotoxy (30 , 10);
+        gotoxy (15 , 10);
         cout << "#+#    #+#      #+#              #+#            #+#           #+#             #+#     #+#   \n ";
         Sleep(50);
-        gotoxy (30 , 11);
+        gotoxy (15 , 11);
         cout << "########       ##########       ########## ###########       ###             ###     ###    \n ";
 
         gotoxy (32 , 22);
@@ -257,7 +257,7 @@ void showHeaderMenu(int menu_selector) {
     }
 }
 
-void runPrincipalFunctions(char key, int position, int &menu_selector) {
+void runPrincipalFunctions(char key, int &position, int &menu_selector) {
     if (key == (int) 13) {  //enter key
         if (menu_selector == 0) {
             if (position == 1) {
@@ -318,7 +318,9 @@ void runPrincipalFunctions(char key, int position, int &menu_selector) {
             menu_selector = 2;
             showPrincipalMenu(menu_selector);
         }
+        resetPosition(position);
     }
+
 }
 
 void gotoxy(int x,int y) {
@@ -365,6 +367,7 @@ void showMenuToEnterInformationFromUser() {
 void showPokemonsGroupByType() {
 
 }
+
 void showPokemonsGroupByMaxLevel() {
 
 }
