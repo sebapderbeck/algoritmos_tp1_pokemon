@@ -10,7 +10,7 @@
 
 using namespace std;
 
-void gotoxy(int x,int y); //set cursor in position(x,y) into terminal
+void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
 
 void hideCursor();
 
@@ -23,8 +23,8 @@ void removeLastPosition(int position);                  //removes the last posit
 
 /*  functions that control the menu  */
 void runPrincipalFunctions(char key, int position, int &principal_secondary_menu);     //principal function for show second menu
-void showPrincipalMenu(int principal_secondary_menu);                                 //show principal menu, names of functions
-void showHeaderMenu(int principal_secondary_menu);                                    //show last menu for know where are you from
+void showPrincipalMenu(int &principal_secondary_menu);                                 //show principal menu, names of functions
+void showHeaderMenu(int &principal_secondary_menu);                                    //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
 void getInformationFromFile();                  //function get information from file
@@ -77,7 +77,7 @@ int main() {
 }
 
 
-void showPrincipalMenu(int principal_secondary_menu) {
+void showPrincipalMenu(int &principal_secondary_menu) {
     system ("CLS");
     if (principal_secondary_menu == 0) {                //Principal Menu
         gotoxy (30 , 5);
@@ -183,7 +183,7 @@ void removeLastPosition(int position) {
     cout << " ";
 }
 
-void showHeaderMenu(int principal_secondary_menu) {
+void showHeaderMenu(int &principal_secondary_menu) {
     if (principal_secondary_menu == 1){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
@@ -254,36 +254,63 @@ void showHeaderMenu(int principal_secondary_menu) {
 void runPrincipalFunctions(char key, int position, int &principal_secondary_menu) {
     if (key == (int) 13) { //enter key
         if (principal_secondary_menu == 0) {
-            if (position == 1) showPrincipalMenu(position);
-            else if (position == 2) showPrincipalMenu(position);
+            if (position == 1) {
+                principal_secondary_menu = 1;
+                showPrincipalMenu(principal_secondary_menu);
+            }
+            else if (position == 2) {
+                principal_secondary_menu = 2;
+                showPrincipalMenu(principal_secondary_menu);
+            }
             else if (position == 3) goodbyeMessage();  //close program
         }
         else if (principal_secondary_menu == 1) {
             if (position == 1) showMenuToEnterInformationFromUser();
             else if (position == 2) getInformationFromFile();
-            else if (position == 3) showPrincipalMenu(0);   //back to principal menu
+            else if (position == 3) {
+                principal_secondary_menu = 0;
+                showPrincipalMenu(principal_secondary_menu); //back to principal menu
+            }
         }
         else if (principal_secondary_menu == 2) {
             if (position == 1) showPokemonsGroupByType();  // show Pokemons Group By Type
-            else if (position == 2) showPrincipalMenu(22); // show Pokemons Group By Level
-            else if (position == 3) showPrincipalMenu(23); // show Pokemons divided by level
+            else if (position == 2) {
+                principal_secondary_menu = 22;
+                showPrincipalMenu(principal_secondary_menu); // show Pokemons Group By Level
+            }
+            else if (position == 3) {
+                principal_secondary_menu = 23;
+                showPrincipalMenu(principal_secondary_menu); // show Pokemons divided by level
+            }
         }
         else if (principal_secondary_menu == 22) {
             if (position == 1) showPokemonsGroupByMaxLevel();      // show Pokemons Group By Max level, more than 500
             else if (position == 2) showPokemonsGroupByMinLevel(); // show Pokemons Group By Min level, less than 500
             else if (position == 3) showPokemonsGroupByLevel();    // show Pokemons Group By level equals to 500
-            else if (position == 4) showPrincipalMenu(2);
+            else if (position == 4){
+                principal_secondary_menu = 2;
+                showPrincipalMenu(principal_secondary_menu);
+            }
         }
         else if (principal_secondary_menu == 23) {
             if (position == 1) showPokemonsWithHighestLevel();  // Show pokemon with the highest level
             else if (position == 2) showPokemonWithLessLevel(); // Show the pokemon with less level
-            else if (position == 3) showPrincipalMenu(2);
+            else if (position == 3) {
+                principal_secondary_menu = 2;
+                showPrincipalMenu(principal_secondary_menu);
+            }
         }
     }
-    else if (key == (int) 27) { //escape key}
-        if (principal_secondary_menu == 1) goodbyeMessage();
-        else if (principal_secondary_menu == 1 || principal_secondary_menu == 2) showPrincipalMenu(0);
-        else if (principal_secondary_menu == 22 || principal_secondary_menu == 23) showPrincipalMenu(2);
+    if (key == (int) 27) { // escape key
+        if (principal_secondary_menu == 0) goodbyeMessage();
+        else if (principal_secondary_menu == 1 || principal_secondary_menu == 2) {
+            principal_secondary_menu = 0;
+            showPrincipalMenu(principal_secondary_menu);
+        }
+        else if (principal_secondary_menu == 22 || principal_secondary_menu == 23){
+            principal_secondary_menu = 2;
+            showPrincipalMenu(principal_secondary_menu);
+        }
     }
 }
 
