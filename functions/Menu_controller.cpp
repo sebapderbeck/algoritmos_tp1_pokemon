@@ -13,6 +13,7 @@ using namespace std;
 void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
 
 void hideCursor();
+void showCursor();
 
 void goodbyeMessage(); //exit message
 
@@ -28,8 +29,10 @@ void showPrincipalMenu(int menu_selector);                                 //sho
 void showHeaderMenu(int menu_selector);                                    //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
-void getInformationFromFile();                  //function get information from file
-void showMenuToEnterInformationFromUser();      //function get information from user, ask how many records do you want to load
+void getInformationFromFile();                          //function get information from file
+void showMenuToEnterInformationFromUser();              //function get information from user, ask how many records do you want to load
+void showTemplateToEnterInformationFromUser(int step);  //function that assigns the information to the struct
+void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons); //header that show how quantity remains to enter
 
 /* functios that control pokemons stats */
 void showPokemonsGroupByType(); //function show all types of pokemons order by type
@@ -190,6 +193,7 @@ void removeLastPosition(int position) {
 }
 
 void showHeaderMenu(int menu_selector) {
+    system("CLS");
     if (menu_selector == 1){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
@@ -341,6 +345,15 @@ void hideCursor() {
     SetConsoleCursorInfo (hCon , &cci);
 }
 
+void showCursor(){
+    HANDLE hCon;
+    hCon = GetStdHandle (STD_OUTPUT_HANDLE);
+    CONSOLE_CURSOR_INFO cci;
+    cci.dwSize = 1;
+    cci.bVisible = true;
+    SetConsoleCursorInfo (hCon , &cci);
+}
+
 void goodbyeMessage() {
     system("CLS");
     gotoxy(30,5);
@@ -361,7 +374,49 @@ void getInformationFromFile() {
 }
 
 void showMenuToEnterInformationFromUser() {
+    system("CLS");
+    showHeaderMenu(11); //INGRESAR INFORMACION MANUALMENTE
+    showCursor();
+    int quantity_limit_pokemons;
+    gotoxy (32 , 22);
+    cout << "   CANTIDAD DE POKEMONS A INGRESAR: ";
+    cin >> quantity_limit_pokemons;
+    for (int current_quantity = 0; current_quantity < quantity_limit_pokemons; current_quantity++){
+        showHeaderQuantityRemainsToEnter(current_quantity, quantity_limit_pokemons);
+        for (int step = 1; step < 4; step++){
+            showTemplateToEnterInformationFromUser(step);
+        }
+    }
+}
 
+void showTemplateToEnterInformationFromUser(int step) {
+    if (step == 1){
+        gotoxy (32 , 22);
+        cout << "   TIPO DE POKEMON: ";
+        cin >> type_pokemon;
+    }
+    else if (step == 2){
+        gotoxy (32 , 24);
+        cout << "   NIVEL DE POKEMON: ";
+    }
+    else if (step == 3){
+        gotoxy (32 , 26);
+        cout << "   NOMBRE DE POKEMON: ";
+    }
+}
+void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
+    system("CLS");
+    gotoxy (19 , 14);
+    cout << (char) 201; //Upper left corner
+    gotoxy (19 , 16);
+    cout << (char) 200; //Lower left corner
+    gotoxy (45 , 14);
+    cout << (char) 187; //Upper right corner
+    gotoxy (45 , 16);
+    cout << (char) 188; //Lower right corner
+
+    gotoxy (20 , 15);
+    cout << "POKEMONS INGRESADOS " << current_quantity << " / " << quantity_limit_pokemons;
 }
 
 void showPokemonsGroupByType() {
