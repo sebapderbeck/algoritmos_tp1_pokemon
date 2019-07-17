@@ -393,7 +393,6 @@ void showTemplateToEnterInformationFromUser(int step) {
     if (step == 1){
         gotoxy (32 , 22);
         cout << "   TIPO DE POKEMON: ";
-        cin >> type_pokemon;
     }
     else if (step == 2){
         gotoxy (32 , 24);
