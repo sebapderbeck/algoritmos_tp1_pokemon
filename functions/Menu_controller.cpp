@@ -171,14 +171,8 @@ void resetPosition(int &position){
 }
 
 void changePosition(char key, int &position) {
-    if (key == 'w' || key == (int) 72 || key == 'W') {
-        if (position == 1) position = 3;
-        else position --;
-    }
-    else if (key == 's' || key == (int) 80 || key == 'S') {
-        if (position == 3) position = 1;
-        else position++;
-    }
+    if (key == 'w' || key == (int) 72 || key == 'W') position = (position == 1) ? 3 : position - 1;
+    else if (key == 's' || key == (int) 80 || key == 'S') position = (position == 3) ? 1 : position + 1;
 }
 
 void showNewPosition(int position) {
