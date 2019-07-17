@@ -15,8 +15,8 @@ void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
 void hideCursor();
 void showCursor();
 
-void goodbyeMessage(); //exit message
-void initialAnimation(); //animation
+void goodbyeMessage();    //exit message
+void initialAnimation();  //animation
 
 /*  functions that control the position  */
 void resetPosition(int &position);                      //reset cursor position to initial position
@@ -26,8 +26,8 @@ void removeLastPosition(int position);                  //removes the last posit
 
 /*  functions that control the menu  */
 void runPrincipalFunctions(char key, int &position, int &menu_selector);     //principal function for show second menu
-void showPrincipalMenu(int menu_selector);                                 //show principal menu, names of functions
-void showHeaderMenu(int menu_selector);                                    //show last menu for know where are you from
+void showPrincipalMenu(int menu_selector);                                   //show principal menu, names of functions
+void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
 void getInformationFromFile();                          //function get information from file
