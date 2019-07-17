@@ -16,6 +16,7 @@ void hideCursor();
 void showCursor();
 
 void goodbyeMessage(); //exit message
+void initialAnimation(); //animation
 
 /*  functions that control the position  */
 void resetPosition(int &position);                      //reset cursor position to initial position
@@ -79,32 +80,34 @@ int main() {
     }
     return 0;
 }
+void initialAnimation(){
+    gotoxy (15 , 5);
+    cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::       :::::::::::  \n ";
+    Sleep(50);
+    gotoxy (15 , 6);
+    cout << " :+:    :+:         :+:              :+:            :+:           :+:    :+:          :+: \n ";
+    Sleep(50);
+    gotoxy (15 , 7);
+    cout << " +:+               +:+              +:+            +:+           +:+    +:+          +:+ \n ";
+    Sleep(50);
+    gotoxy (15 , 8);
+    cout << " +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+           +#+ \n ";
+    Sleep(50);
+    gotoxy (15 , 9);
+    cout << "        +#+      +#+              +#+            +#+           +#+                 +#+  \n ";
+    Sleep(50);
+    gotoxy (15 , 10);
+    cout << "#+#    #+#      #+#              #+#            #+#           #+#                 #+#   \n ";
+    Sleep(50);
+    gotoxy (15 , 11);
+    cout << "########       ##########       ##########  ###########      ###              ###########    \n ";
 
+}
 
 void showPrincipalMenu(int menu_selector) {
     system ("CLS");
     if (menu_selector == 0) {                //Principal Menu
-        gotoxy (15 , 5);
-        cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::       :::::::::::  \n ";
-        Sleep(50);
-        gotoxy (15 , 6);
-        cout << " :+:    :+:         :+:              :+:            :+:           :+:    :+:          :+: \n ";
-        Sleep(50);
-        gotoxy (15 , 7);
-        cout << " +:+               +:+              +:+            +:+           +:+    +:+          +:+ \n ";
-        Sleep(50);
-        gotoxy (15 , 8);
-        cout << " +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+           +#+ \n ";
-        Sleep(50);
-        gotoxy (15 , 9);
-        cout << "        +#+      +#+              +#+            +#+           +#+                 +#+  \n ";
-        Sleep(50);
-        gotoxy (15 , 10);
-        cout << "#+#    #+#      #+#              #+#            #+#           #+#                 #+#   \n ";
-        Sleep(50);
-        gotoxy (15 , 11);
-        cout << "########       ##########       ##########  ###########      ###              ###########    \n ";
-
+        initialAnimation();
         gotoxy (32 , 22);
         cout << "   INGRESAR INFORMACION EN EL POKEDEX    ";
         Sleep(50);
