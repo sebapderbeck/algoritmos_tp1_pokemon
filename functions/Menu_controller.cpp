@@ -8,6 +8,8 @@
 #include <fstream>
 #include <stdlib.h>
 #include <cstdlib>
+#include <regex>
+#include <string>
 
 using namespace std;
 
@@ -45,6 +47,11 @@ void showPokemonsGroupByLevel();
 
 void showPokemonsWithHighestLevel();
 void showPokemonWithLessLevel();
+
+/*functions that validate user data enter */
+bool isValidNumber(int number); //function that validate number
+int isValidLetter(char letter);       //function that validate key
+
 
 int main() {
     system ("CLS");
@@ -422,13 +429,27 @@ void showPokemonsGroupByMaxLevel() {
 }
 
 void showPokemonsGroupByMinLevel() {
+
 }
 
 void showPokemonsGroupByLevel() {
+
 }
 
 void showPokemonsWithHighestLevel() {
+
 }
 
 void showPokemonWithLessLevel() {
+
+}
+
+bool isValidNumber(int number) {
+    return (number <= 1000 && number >= 1) ? true : false;
+}
+
+int isValidLetter(char letter) {
+    regex regex_letter_validation ("[^TtFfEeAa]");
+    smatch match;
+    return !regex_search(letter, match, regex_letter_validation);
 }

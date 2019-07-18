@@ -23,8 +23,16 @@ FUNCIONES PARA INGRESAR O CARGAR INFORMACION
 
 FUNCIONES PARA MOSTRAR Y CALCULAR ESTADISTICAS
     <1> showPokemonsGroupByType(): Muestra por pantalla la cantidad de Pokemón por cada tipo.
-    <2> showPokemonsGroupByMaxLevel(): Muestra la cantidad de Pokémons con nivel mayor a 500
-    <3> showPokemonsGroupByMinLevel(): Muestra la cantidad de Pokémons con nivel menor a 500
-    <4> showPokemonsGroupByLevel(): Muestra la cantidad de Pokémons con nivel igual a 500
+    <2> showPokemonsGroupByMaxLevel(): Muestra la cantidad de Pokémons con nivel mayor a 500.
+    <3> showPokemonsGroupByMinLevel(): Muestra la cantidad de Pokémons con nivel menor a 500.
+    <4> showPokemonsGroupByLevel(): Muestra la cantidad de Pokémons con nivel igual a 500.
     <5> showPokemonsWithHighestLevel(): Muestra el Pokémon más poderoso por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.
     <6> showPokemonWithLessLevel(): Muestra el Pokémon más debil por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.
+
+FUNCIONES PARA VALIDAR LOS DATOS QUE INGRESA DEL USUARIO
+    <1> isValidNumber(): Valida que el numero sea positivo y menor a 1000
+    <2> isValidLetter(): Valida que la letra este dentro del rango posibles de letras a utilizar por el usuario
+
+FUNCIONES DE ANIMACION
+    <1> goodbyeMessage(): Muestra una animacion cuando el usuario sale del sistema
+    <2> initialAnimation(): Muestra una animacion cuando el usuario ingresa el sistema
