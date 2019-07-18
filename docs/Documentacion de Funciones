@@ -1,0 +1,30 @@
+
+FUNCIONES PARA EL CONTROL DEL CURSOR
+    <1> gotoxy(): Esta funcion ubica el cursor en una posicion dentro de la consola, funciona como un eje de coordenadas.
+    <2> hideCursor(): Oculta el cursor para no verlo titilar.
+    <3> showCursor(): Muestra el cursor.
+
+FUNCIONES PARA EL CONTROL DE POSICION
+    <1> resetPosition(): Resetea la posicion del cursor para verlo en la posicion inicial.
+    <2> changePosition(): Cambia la posicion del cursor dentro de la posibilidad del menu.
+    <3> showNewPosition(): Muentra el icono del cursor en su nueva posicion.
+    <4> removeLastPosition(): Borra el icono del cursor anterior.
+
+FUNCIONES PARA MOSTRAR Y SELECCIONAR MENU
+    <1> runPrincipalFunctions(): Ejecuta las funciones dependiendo en la posicion en la que el usuario apreto enter.
+    <2> showPrincipalMenu(): Muestra el menu en el que se encuentra.
+    <3> showHeaderMenu(): Muentra un encabezado para saber a cual era el menu anterior.
+
+FUNCIONES PARA INGRESAR O CARGAR INFORMACION
+    <1> getInformationFromFile(): Obtiene informacion de un archivo.
+    <2> showMenuToEnterInformationFromUser(): Obtiene informacion que se la pide al usuario.
+    <3> showTemplateToEnterInformationFromUser(): Muestra un formulario que debe llenar el usuario con la informacion que quiere cargar.
+    <4> showHeaderQuantityRemainsToEnter(): Muestra la cantidad de registros que esta faltan cargar dependiendo la cantidad que pidio el usuario cargar.
+
+FUNCIONES PARA MOSTRAR Y CALCULAR ESTADISTICAS
+    <1> showPokemonsGroupByType(): Muestra por pantalla la cantidad de Pokemón por cada tipo.
+    <2> showPokemonsGroupByMaxLevel(): Muestra la cantidad de Pokémons con nivel mayor a 500
+    <3> showPokemonsGroupByMinLevel(): Muestra la cantidad de Pokémons con nivel menor a 500
+    <4> showPokemonsGroupByLevel(): Muestra la cantidad de Pokémons con nivel igual a 500
+    <5> showPokemonsWithHighestLevel(): Muestra el Pokémon más poderoso por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.
+    <6> showPokemonWithLessLevel(): Muestra el Pokémon más debil por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.

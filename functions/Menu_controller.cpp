@@ -7,6 +7,7 @@
 #include <conio.h>
 #include <fstream>
 #include <stdlib.h>
+#include <cstdlib>
 
 using namespace std;
 
@@ -101,7 +102,6 @@ void initialAnimation(){
     Sleep(50);
     gotoxy (15 , 11);
     cout << "########       ##########       ##########  ###########      ###              ###########    \n ";
-
 }
 
 void showPrincipalMenu(int menu_selector) {
@@ -166,7 +166,7 @@ void showPrincipalMenu(int menu_selector) {
     }
 }
 
-void resetPosition(int &position){
+void resetPosition(int &position) {
     position = 1;
 }
 
@@ -342,7 +342,7 @@ void hideCursor() {
     SetConsoleCursorInfo (hCon , &cci);
 }
 
-void showCursor(){
+void showCursor() {
     HANDLE hCon;
     hCon = GetStdHandle (STD_OUTPUT_HANDLE);
     CONSOLE_CURSOR_INFO cci;
@@ -353,8 +353,6 @@ void showCursor(){
 
 void goodbyeMessage() {
     system("CLS");
-    gotoxy(30,5);
-    cout << "CHAU PONEME UN 10";
     exit(0);
 }
 
