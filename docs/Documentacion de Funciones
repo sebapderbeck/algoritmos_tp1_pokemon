@@ -36,3 +36,4 @@ FUNCIONES PARA VALIDAR LOS DATOS QUE INGRESA DEL USUARIO
 FUNCIONES DE ANIMACION
     <1> goodbyeMessage(): Muestra una animacion cuando el usuario sale del sistema
     <2> initialAnimation(): Muestra una animacion cuando el usuario ingresa el sistema
+    <3> showLoadingBar(): Muestra una barra de carga

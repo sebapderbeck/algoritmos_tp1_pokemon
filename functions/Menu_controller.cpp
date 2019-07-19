@@ -18,6 +18,8 @@ void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
 void hideCursor();
 void showCursor();
 
+/*  functions that animate the system  */
+void showLoadingBar(); // laoding bar
 void goodbyeMessage();    //exit message
 void initialAnimation();  //animation
 
@@ -392,17 +394,22 @@ void showMenuToEnterInformationFromUser() {
 }
 
 void showTemplateToEnterInformationFromUser(int step) {
+    string type, name;
+    int level;
     if (step == 1){
         gotoxy (32 , 22);
         cout << "   TIPO DE POKEMON: ";
+        cin >> type;
     }
     else if (step == 2){
         gotoxy (32 , 24);
         cout << "   NIVEL DE POKEMON: ";
+        cin >> level;
     }
     else if (step == 3){
         gotoxy (32 , 26);
         cout << "   NOMBRE DE POKEMON: ";
+        cin >> name;
     }
 }
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
@@ -452,4 +459,8 @@ int isValidLetter(string letter) {
     regex regex_letter_validation ("[^TtFfEeAa]");
     smatch match;
     return !regex_search(letter, match, regex_letter_validation);
+}
+
+void showLoadingBar() {
+    system("CLS");
 }
