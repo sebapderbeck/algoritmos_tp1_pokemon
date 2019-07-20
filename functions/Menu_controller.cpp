@@ -56,8 +56,9 @@ int isValidLetter(string letter);       //function that validate key
 
 
 int main() {
-    system ("CLS");
-    system("color 07");
+    system("color 07");//Black background Color and white Text Color
+    showLoadingBar();
+
     char key;
     int position = 1;
     int timer = 100;
@@ -93,22 +94,22 @@ int main() {
 void initialAnimation(){
     gotoxy (15 , 5);
     cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::       :::::::::::  \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 6);
     cout << " :+:    :+:         :+:              :+:            :+:           :+:    :+:          :+: \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 7);
     cout << " +:+               +:+              +:+            +:+           +:+    +:+          +:+ \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 8);
     cout << " +#++:++#++       +#++:++#         +#+            +#+           +#++:++#+           +#+ \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 9);
     cout << "        +#+      +#+              +#+            +#+           +#+                 +#+  \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 10);
     cout << "#+#    #+#      #+#              #+#            #+#           #+#                 #+#   \n ";
-    Sleep(50);
+    Sleep(100);
     gotoxy (15 , 11);
     cout << "########       ##########       ##########  ###########      ###              ###########    \n ";
 }
@@ -462,5 +463,16 @@ int isValidLetter(string letter) {
 }
 
 void showLoadingBar() {
+    system("CLS");
+    gotoxy (40 , 19);
+    cout<<"Please Wait...";
+    Sleep(150);
+
+    gotoxy (38 , 20);
+    cout << (char)177;
+    for (int i = 0; i < 15; i++) {
+        cout << (char)219;
+        Sleep(150); //You can also use sleep function instead of for loop
+    }
     system("CLS");
 }
