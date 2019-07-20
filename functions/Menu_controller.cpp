@@ -469,7 +469,6 @@ void showLoadingBar() {
     Sleep(150);
 
     gotoxy (38 , 20);
-    cout << (char)177;
     for (int i = 0; i < 15; i++) {
         cout << (char)219;
         Sleep(150); //You can also use sleep function instead of for loop
