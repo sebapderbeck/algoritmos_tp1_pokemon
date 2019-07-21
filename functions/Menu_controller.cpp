@@ -161,18 +161,18 @@ void showPrincipalMenu(int menu_selector) {
         cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL MENOR A 500 ";
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL IGUAL A 500  "; //Higher level and lower level
+        cout << "   MOSTRAR CANTIDAD DE POKEMONS CON NIVEL IGUAL A 500 "; //Higher level and lower level
     }
     else if(menu_selector == 23){             //Stats from pokedex ( sub menu from show pokemons group by type )
         showHeaderMenu(menu_selector);
         gotoxy (32 , 22);
-        cout << "   MOSTRAR POKEMONS CON MAYOR NIVEL POR TIPO "; // Higher level
+        cout << "   MOSTRAR POKEMONS MAS PODEROSOS POR TIPO "; // Higher level
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "   MOSTRAR POKEMONS CON MENOR NIVEL POR TIPO "; // lower level
+        cout << "   MOSTRAR POKEMONS MAS DEBILES POR TIPO   ";   // lower level
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "                   VOLVER                    "; // back to stats menu
+        cout << "                  VOLVER                   "; // back to stats menu
     }
 }
 
@@ -258,13 +258,13 @@ void showHeaderMenu(int menu_selector) {
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
         cout << (char) 200; //Lower left corner
-        gotoxy (50 , 14);
+        gotoxy (47 , 14);
         cout << (char) 187; //Upper right corner
-        gotoxy (50 , 16);
+        gotoxy (47 , 16);
         cout << (char) 188; //Lower right corner
 
         gotoxy (20 , 15);
-        cout << "POKEMONS DEVIDIDO POR NIVEL";
+        cout << "POKEMONS DIVIDIDO POR NIVEL";
     }
 }
 
@@ -397,7 +397,7 @@ void showMenuToEnterInformationFromUser() {
 void showTemplateToEnterInformationFromUser(int step) {
     string type, name;
     int level;
-    if (step == 1) {
+    if (step == 1){
         gotoxy (32 , 22);
         cout << "   TIPO DE POKEMON: ";
         cin >> type;
@@ -415,13 +415,13 @@ void showTemplateToEnterInformationFromUser(int step) {
 }
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
     system("CLS");
-    gotoxy (19 , 14);
+    gotoxy (20 , 14);
     cout << (char) 201; //Upper left corner
-    gotoxy (19 , 16);
+    gotoxy (20 , 16);
     cout << (char) 200; //Lower left corner
-    gotoxy (45 , 14);
+    gotoxy (46 , 14);
     cout << (char) 187; //Upper right corner
-    gotoxy (45 , 16);
+    gotoxy (46 , 16);
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
@@ -449,7 +449,7 @@ void showPokemonsWithHighestLevel() {
 }
 
 void showPokemonWithLessLevel() {
-    cout<<"test";
+
 }
 
 bool isValidNumber(int number) {
