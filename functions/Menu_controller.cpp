@@ -425,7 +425,7 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
-    cout << "POKEMONS INGRESADOS " << current_quantity << " / " << quantity_limit_pokemons;
+    cout << " POKEMONS INGRESADOS " << current_quantity << " / " << quantity_limit_pokemons;
 }
 
 void showPokemonsGroupByType() {
