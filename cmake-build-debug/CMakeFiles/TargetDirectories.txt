@@ -1,0 +1,3 @@
+C:/Users/sopderbeck/CLionProjects/algoritmos_tp1_pokemon/cmake-build-debug/CMakeFiles/algoritmos_tp1_pokemon.dir
+C:/Users/sopderbeck/CLionProjects/algoritmos_tp1_pokemon/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/sopderbeck/CLionProjects/algoritmos_tp1_pokemon/cmake-build-debug/CMakeFiles/rebuild_cache.dir

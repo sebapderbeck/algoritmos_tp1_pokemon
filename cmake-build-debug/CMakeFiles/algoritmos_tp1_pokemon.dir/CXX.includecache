@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+C:/Users/sopderbeck/CLionProjects/algoritmos_tp1_pokemon/main.cpp
+iostream
+-
+stdio.h
+-
+windows.h
+-
+conio.h
+-
+fstream
+-
+stdlib.h
+-
+
