@@ -13,6 +13,12 @@
 
 using namespace std;
 
+struct tPokemon {
+    string type;
+    int level;
+    string name;
+};
+
 void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
 
 void hideCursor();
@@ -30,7 +36,7 @@ void showNewPosition(int position);                     //prints arrows in curre
 void removeLastPosition(int position);                  //removes the last position in which the arrow was
 
 /*  functions that control the menu  */
-void runPrincipalFunctions(char key, int &position, int &menu_selector);     //principal function for show second menu
+void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon rPokemon[], int &current_register_length);     //principal function for show second menu
 void showPrincipalMenu(int menu_selector);                                   //show principal menu, names of functions
 void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
 
@@ -43,9 +49,9 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
 /* functios that control pokemons stats */
 void showPokemonsGroupByType(); //function show all types of pokemons order by type
 
-void showPokemonsGroupByMaxLevel();
-void showPokemonsGroupByMinLevel();
-void showPokemonsGroupByLevel();
+void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length);
+void showPokemonsGroupByLevel (int level_higher, int level_lower, int lever_equal);
+
 
 void showPokemonsWithHighestLevel();
 void showPokemonWithLessLevel();
@@ -58,6 +64,9 @@ int isValidLetter(string letter);       //function that validate key
 int main() {
     system("color 07");//Black background Color and white Text Color
     showLoadingBar();
+
+    int current_register_length = 0;
+    tPokemon rPokemon[802];
 
     char key;
     int position = 1;
@@ -77,7 +86,7 @@ int main() {
 
             changePosition(key, position);
 
-            runPrincipalFunctions(key, position, menu_selector);
+            runPrincipalFunctions(key, position, menu_selector, rPokemon, current_register_length);
 
             showNewPosition(position);
             timer = 100;
@@ -268,7 +277,7 @@ void showHeaderMenu(int menu_selector) {
     }
 }
 
-void runPrincipalFunctions(char key, int &position, int &menu_selector) {
+void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon rPokemon[], int &current_register_length) {
     if (key == (int) 13){  //enter key
         if (menu_selector == 0){
             if (position == 1){
@@ -301,9 +310,9 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector) {
             }
         }
         else if (menu_selector == 22){
-            if (position == 1) showPokemonsGroupByMaxLevel();      // show Pokemons Group By Max level, more than 500
-            else if (position == 2) showPokemonsGroupByMinLevel(); // show Pokemons Group By Min level, less than 500
-            else if (position == 3) showPokemonsGroupByLevel();    // show Pokemons Group By level equals to 500
+            if (position == 1) computePokemonsGroupByLevel(rPokemon, current_register_length);      // show Pokemons Group By Max level, more than 500
+            else if (position == 2) computePokemonsGroupByLevel(rPokemon, current_register_length); // show Pokemons Group By Min level, less than 500
+            else if (position == 3) computePokemonsGroupByLevel(rPokemon, current_register_length);    // show Pokemons Group By level equals to 500
             else if (position == 4){
                 menu_selector = 2;
                 showPrincipalMenu(menu_selector);
@@ -432,17 +441,35 @@ void showPokemonsGroupByType() {
 
 }
 
-void showPokemonsGroupByMaxLevel() {
-
+void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length) {
+    int level_higher = 0;
+    int level_lower = 0;
+    int level_equal = 0;
+    for (int i = 0; i < current_register_length; i++){
+        if (rPokemon [i].level > 500){
+            level_higher++;
+        }
+        else if (rPokemon [i].level < 500){
+            level_lower++;
+        }
+        else {
+            level_equal++;
+        }
+    }
+    showPokemonsGroupByLevel (level_higher, level_lower, level_equal);
+}
+void showPokemonsGroupByLevel (int level_higher, int level_lower, int level_equal) {
+    system ("CLS");
+    gotoxy (32 , 22);
+    cout << "LA CANTIDAD DE POKÉMONS CON NIVEL MAYOR A 500 ES:" << level_higher;
+    gotoxy (32 , 24);
+    cout << "LA CANTIDAD DE POKÉMONS CON NIVEL MENOR A 500 ES:" << level_lower;
+    gotoxy (32 , 26);
+    cout << "LA CANTIDAD DE POKÉMONS CON NIVEL IGUAL A 500 ES:" << level_equal;
+    system ("PAUSE");
+    showPrincipalMenu(2);
 }
 
-void showPokemonsGroupByMinLevel() {
-
-}
-
-void showPokemonsGroupByLevel() {
-
-}
 
 void showPokemonsWithHighestLevel() {
 
@@ -475,3 +502,6 @@ void showLoadingBar() {
     }
     system("CLS");
 }
+
+
+
