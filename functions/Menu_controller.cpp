@@ -65,12 +65,12 @@ int main() {
     int menu_selector = 0;
     showPrincipalMenu(menu_selector);
 
-    while (true) {
+    while (true){
         hideCursor();
         Sleep (15);
         showNewPosition(position);
 
-        if (kbhit()) {
+        if (kbhit()){
             removeLastPosition(position);
 
             key = getch(); //key detector
@@ -82,7 +82,7 @@ int main() {
             showNewPosition(position);
             timer = 100;
         }
-        if (timer == 0) {
+        if (timer == 0){
             removeLastPosition(position);
             timer = 100;
             Sleep (500);
@@ -91,7 +91,7 @@ int main() {
     }
     return 0;
 }
-void initialAnimation(){
+void initialAnimation() {
     gotoxy (15 , 5);
     cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::       :::::::::::  \n ";
     Sleep(100);
@@ -116,7 +116,7 @@ void initialAnimation(){
 
 void showPrincipalMenu(int menu_selector) {
     system ("CLS");
-    if (menu_selector == 0) {                //Principal Menu
+    if (menu_selector == 0){                //Principal Menu
         initialAnimation();
         gotoxy (32 , 22);
         cout << "   INGRESAR INFORMACION EN EL POKEDEX    ";
@@ -269,38 +269,38 @@ void showHeaderMenu(int menu_selector) {
 }
 
 void runPrincipalFunctions(char key, int &position, int &menu_selector) {
-    if (key == (int) 13) {  //enter key
-        if (menu_selector == 0) {
-            if (position == 1) {
+    if (key == (int) 13){  //enter key
+        if (menu_selector == 0){
+            if (position == 1){
                 menu_selector = 1;
                 showPrincipalMenu(menu_selector);
             }
-            else if (position == 2) {
+            else if (position == 2){
                 menu_selector = 2;
                 showPrincipalMenu(menu_selector);
             }
             else if (position == 3) goodbyeMessage();  //close program
         }
-        else if (menu_selector == 1) {
+        else if (menu_selector == 1){
             if (position == 1) showMenuToEnterInformationFromUser();
             else if (position == 2) getInformationFromFile();
-            else if (position == 3) {
+            else if (position == 3){
                 menu_selector = 0;
                 showPrincipalMenu(menu_selector); //back to principal menu
             }
         }
-        else if (menu_selector == 2) {
+        else if (menu_selector == 2){
             if (position == 1) showPokemonsGroupByType();  // show Pokemons Group By Type
-            else if (position == 2) {
+            else if (position == 2){
                 menu_selector = 22;
                 showPrincipalMenu(menu_selector); // show Pokemons Group By Level
             }
-            else if (position == 3) {
+            else if (position == 3){
                 menu_selector = 23;
                 showPrincipalMenu(menu_selector); // show Pokemons divided by level
             }
         }
-        else if (menu_selector == 22) {
+        else if (menu_selector == 22){
             if (position == 1) showPokemonsGroupByMaxLevel();      // show Pokemons Group By Max level, more than 500
             else if (position == 2) showPokemonsGroupByMinLevel(); // show Pokemons Group By Min level, less than 500
             else if (position == 3) showPokemonsGroupByLevel();    // show Pokemons Group By level equals to 500
@@ -309,19 +309,19 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector) {
                 showPrincipalMenu(menu_selector);
             }
         }
-        else if (menu_selector == 23) {
+        else if (menu_selector == 23){
             if (position == 1) showPokemonsWithHighestLevel();  // Show pokemon with the highest level
             else if (position == 2) showPokemonWithLessLevel(); // Show the pokemon with less level
-            else if (position == 3) {
+            else if (position == 3){
                 menu_selector = 2;
                 showPrincipalMenu(menu_selector);
             }
         }
         resetPosition(position);
     }
-    if (key == (int) 27) { // escape key
+    if (key == (int) 27){ // escape key
         if (menu_selector == 0) goodbyeMessage();
-        else if (menu_selector == 1 || menu_selector == 2) {
+        else if (menu_selector == 1 || menu_selector == 2){
             menu_selector = 0;
             showPrincipalMenu(menu_selector);
         }
@@ -340,7 +340,7 @@ void gotoxy(int x,int y) {
     COORD dwPos;
     dwPos.X = x;
     dwPos.Y= y;
-    SetConsoleCursorPosition(hcon,dwPos);
+    SetConsoleCursorPosition(hcon , dwPos);
 }
 
 void hideCursor() {
@@ -349,7 +349,7 @@ void hideCursor() {
     CONSOLE_CURSOR_INFO cci;
     cci.dwSize = 1;
     cci.bVisible = false;
-    SetConsoleCursorInfo (hCon , &cci);
+    SetConsoleCursorInfo(hCon , &cci);
 }
 
 void showCursor() {
