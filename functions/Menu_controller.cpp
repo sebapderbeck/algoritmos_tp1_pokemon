@@ -470,7 +470,7 @@ void showLoadingBar() {
 
     gotoxy (38 , 20);
     for (int i = 0; i < 15; i++){
-        cout << (char)219;
+        cout << (char) 219;
         Sleep(150);
     }
     system("CLS");
