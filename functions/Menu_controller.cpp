@@ -465,11 +465,11 @@ int isValidLetter(string letter) {
 void showLoadingBar() {
     system("CLS");
     gotoxy (40 , 19);
-    cout<<"Please Wait...";
+    cout << " Please Wait... ";
     Sleep(150);
 
     gotoxy (38 , 20);
-    for (int i = 0; i < 15; i++) {
+    for (int i = 0; i < 15; i++){
         cout << (char)219;
         Sleep(150);
     }
