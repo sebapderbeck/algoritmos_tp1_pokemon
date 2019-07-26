@@ -51,9 +51,9 @@ void showPokemonsWithHighestLevel();
 void showPokemonWithLessLevel();
 
 /*functions that validate user data enter */
-bool isValidNumber(int number); //function that validate number
-int isValidLetter(string letter);       //function that validate key
-
+bool isValidNumber(int number);     //function that validate number
+int isValidLetter(string letter);   //function that validate key
+bool isValidName(string name);      //function that validate pokemon name
 
 int main() {
     system("color 07");//Black background Color and white Text Color
@@ -450,6 +450,10 @@ void showPokemonsWithHighestLevel() {
 
 void showPokemonWithLessLevel() {
 
+}
+
+bool isValidName(string name) {
+    return (name.size() < 10) ? true : false;
 }
 
 bool isValidNumber(int number) {
