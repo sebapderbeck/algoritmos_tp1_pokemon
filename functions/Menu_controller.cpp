@@ -60,9 +60,10 @@ void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int l
 
 
 /*functions that validate user data enter */
-bool isValidNumber(int number);     //function that validate number
-int isValidLetter(string letter);   //function that validate key
-bool isValidName(string name);      //function that validate pokemon name
+bool isValidNumber(int number);             //function that validate number
+int isValidLetter(string letter);           //function that validate key
+bool isValidName(string name);              //function that validate pokemon name
+void changeLetterToUppercase(string &word); //function that change letter to uppercase. for validate type pokemon
 
 int main() {
     system("color 07");//Black background Color and white Text Color
@@ -610,6 +611,13 @@ int isValidLetter(string letter) {
     regex regex_letter_validation ("[^TtFfEeAa]");
     smatch match;
     return !regex_search(letter, match, regex_letter_validation);
+}
+
+void changeLetterToUppercase(string &word){
+    for (int i = 0; i < word.length(); i++){
+        //word[i] = ((int)word[i] > 96 && (int)word[i] < 123) ? (int)word[i] - 32 : word[i];
+        word[i] = toupper(word[i]);
+    }
 }
 
 void showLoadingBar() {
