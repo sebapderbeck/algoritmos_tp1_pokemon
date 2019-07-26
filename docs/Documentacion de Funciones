@@ -32,6 +32,8 @@ FUNCIONES PARA MOSTRAR Y CALCULAR ESTADISTICAS
 FUNCIONES PARA VALIDAR LOS DATOS QUE INGRESA DEL USUARIO
     <1> isValidNumber(): Valida que el numero sea positivo y menor a 1000
     <2> isValidLetter(): Valida que la letra este dentro del rango posibles de letras a utilizar por el usuario
+    <3> isValidName(): Valida que el nombre contenga la cantidad de caracteres correspondientes
+    <4> changeLetterToUppercase(): Cambia el texto para que se muestre en mayuscula
 
 FUNCIONES DE ANIMACION
     <1> goodbyeMessage(): Muestra una animacion cuando el usuario sale del sistema
