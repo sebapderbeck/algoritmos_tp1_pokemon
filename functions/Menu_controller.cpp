@@ -613,7 +613,7 @@ int isValidLetter(string letter) {
     return !regex_search(letter, match, regex_letter_validation);
 }
 
-void changeLetterToUppercase(string &word){
+void changeLetterToUppercase(string &word) {
     for (int i = 0; i < word.length(); i++){
         //word[i] = ((int)word[i] > 96 && (int)word[i] < 123) ? (int)word[i] - 32 : word[i];
         word[i] = toupper(word[i]);
