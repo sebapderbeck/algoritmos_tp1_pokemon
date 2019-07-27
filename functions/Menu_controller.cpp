@@ -41,8 +41,10 @@ void showPrincipalMenu(int menu_selector);                                   //s
 void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
-void getInformationFromFile();                          //function get information from file
-void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);              //function get information from user, ask how many records do you want to load
+void getInformationFromFile(tPokemon rPokemon[], int current_register_length);                            //function load information from file
+string ShowTemplateToEnterNameFromFile();                                                                 // function that show text to enter the name of file
+void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);                          //function that enter information
+void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);               //function get information from user, ask how many records do you want to load
 void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);  //function that assigns the information to the struct
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons); //header that show how quantity remains to enter
 int getLimitPokemonInArray(); // pide al usuario un limite de pokemones para ingresar
@@ -148,7 +150,7 @@ void showPrincipalMenu(int menu_selector) {
         cout << "    INGRESAR INFORMACION MANUALMENTE     ";
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "   INGRESAR INFORMACION DE UN ARCHIVO    ";
+        cout << "    CARGAR INFORMACION DE UN ARCHIVO    ";
         Sleep(50);
         gotoxy (32 , 26);
         cout << "                 VOLVER                  ";
@@ -297,7 +299,7 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
         }
         else if (menu_selector == 1){
             if (position == 1) showMenuToEnterInformationFromUser(rPokemon, current_register_length);
-            else if (position == 2) getInformationFromFile();
+            else if (position == 2) getInformationFromFile(rPokemon, current_register_length);
             else if (position == 3){
                 menu_selector = 0;
                 showPrincipalMenu(menu_selector); //back to principal menu
@@ -380,16 +382,39 @@ void goodbyeMessage() {
     exit(0);
 }
 
-void getInformationFromFile() {
-    ifstream filePokedex; //created object filePokedex of type ifstream
-    int lenght = 500;     //file size
-    char * buffer = new char [lenght]; //variable temporal
-    filePokedex.open("pokedex.dat", ios::in | ios::binary); //open file
+string ShowTemplateToEnterNameFromFile() {
+    system("CLS");
+    string name_file;
 
-    while(!filePokedex.eof()) {
-        filePokedex.read(buffer, lenght);
+    gotoxy (32 , 22);
+    cout << "INGRESAR EL NOMBRE DEL ARCHIVO: ";
+    cin >> name_file;
+
+    return name_file;
+}
+
+void getInformationFromFile(tPokemon rPokemon[], int current_register_length) {
+    FILE *filePokedex; //create file
+    tPokemon rTemporalPokemon;
+    filePokedex = fopen (ShowTemplateToEnterNameFromFile(), "rb"); //open file in mode read
+    if (filePokedex != NULL){
+        fread (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex);
+        while (!feof(filePokedex)){
+            rPokemon[current_register_length].type  = rTemporalPokemon.type;
+            rPokemon[current_register_length].level = rTemporalPokemon.level;
+            rPokemon[current_register_length].name  = rTemporalPokemon.name;
+            current_register_length ++;
+            fread (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex);
+        }
     }
-    filePokedex.close();
+    fclose (filePokedex); //close file
+}
+
+void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length) {
+    FILE *filePokedex; //create file
+    filePokedex = fopen ("pokedex.dat","wb"); //open file in mode write
+    if (filePokedex != NULL) fwrite (&rPokemon, current_register_length, 1, filePokedex); //write one line into file
+    fclose (filePokedex); //close file
 }
 
 void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length) {
@@ -422,6 +447,7 @@ void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_reg
     cout << "   NOMBRE DE POKEMON: ";
     cin >> rPokemon[current_register_length].name;
 
+    enterInformationIntoFile(rPokemon, current_register_length);
 }
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
     system("CLS");
