@@ -41,8 +41,8 @@ void showPrincipalMenu(int menu_selector);                                   //s
 void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
-void getInformationFromFile(tPokemon rPokemon[], int current_register_length);                            //function load information from file
-string ShowTemplateToEnterNameFromFile();                                                                 // function that show text to enter the name of file
+void getInformationFromFile(tPokemon rPokemon[], int &current_register_length);                            //function load information from file
+void ShowTemplateToEnterNameFromFile(char * name_file);                                                                 // function that show text to enter the name of file
 void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);                          //function that enter information
 void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);               //function get information from user, ask how many records do you want to load
 void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);  //function that assigns the information to the struct
@@ -243,6 +243,19 @@ void showHeaderMenu(int menu_selector) {
         gotoxy (20 , 15);
         cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
     }
+    else if (menu_selector == 12){
+        gotoxy (19 , 14);
+        cout << (char) 201; //Upper left corner
+        gotoxy (19 , 16);
+        cout << (char) 200; //Lower left corner
+        gotoxy (52 , 14);
+        cout << (char) 187; //Upper right corner
+        gotoxy (52 , 16);
+        cout << (char) 188; //Lower right corner
+
+        gotoxy (20 , 15);
+        cout << "CARGAR INFORMACION DE UN ARCHIVO";
+    }
     else if (menu_selector == 2){
         gotoxy (19 , 14);
         cout << (char) 201; //Upper left corner
@@ -382,21 +395,26 @@ void goodbyeMessage() {
     exit(0);
 }
 
-string ShowTemplateToEnterNameFromFile() {
+void ShowTemplateToEnterNameFromFile(char * name_file) {
     system("CLS");
-    string name_file;
+    showCursor();
+    showHeaderMenu(12);
+    char * extension = ".dat";
 
     gotoxy (32 , 22);
     cout << "INGRESAR EL NOMBRE DEL ARCHIVO: ";
     cin >> name_file;
 
-    return name_file;
+    strcat(name_file, extension);
+    hideCursor();
 }
 
-void getInformationFromFile(tPokemon rPokemon[], int current_register_length) {
-    FILE *filePokedex; //create file
+void getInformationFromFile(tPokemon rPokemon[], int &current_register_length) {
+    FILE * filePokedex; //create file
     tPokemon rTemporalPokemon;
-    filePokedex = fopen (ShowTemplateToEnterNameFromFile(), "rb"); //open file in mode read
+    char * name_file;
+    ShowTemplateToEnterNameFromFile(name_file);
+    filePokedex = fopen (name_file, "rb"); //open file in mode read
     if (filePokedex != NULL){
         fread (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex);
         while (!feof(filePokedex)){
@@ -413,7 +431,8 @@ void getInformationFromFile(tPokemon rPokemon[], int current_register_length) {
 void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length) {
     FILE *filePokedex; //create file
     filePokedex = fopen ("pokedex.dat","wb"); //open file in mode write
-    if (filePokedex != NULL) fwrite (&rPokemon, current_register_length, 1, filePokedex); //write one line into file
+    tPokemon rTemporalPokemon = rPokemon[current_register_length];
+    fwrite (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex); //write one line into file
     fclose (filePokedex); //close file
 }
 
@@ -461,7 +480,7 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
-    cout << " POKEMONS INGRESADOS " << current_quantity << " / " << quantity_limit_pokemons;
+    cout << " POKEMONS INGRESADOS " << current_quantity + 1 << " / " << quantity_limit_pokemons;
 }
 
 void showPokemonsGroupByType() {
@@ -536,7 +555,6 @@ void cantidadDePokemonesPorTipo(tPokemon rPokemon[], int current_register_length
         }
     }
     mostrarCantidadDePokemonesPorTipo(contador_tierra, contador_fuego, contador_agua, contador_electrico);
-    return;
 }
 
 void mostrarCantidadDePokemonesPorTipo(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico){
