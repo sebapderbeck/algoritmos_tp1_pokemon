@@ -506,7 +506,7 @@ void showPokemonWithLessLevel() {
 }
 
 bool isValidNumber(int number) {
-    return (number <= 1000 && number >= 1) ? true : false;
+    return (number <= 1000 && number >= 1);
 }
 
 int isValidLetter(string letter) {
@@ -617,5 +617,4 @@ void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_
     showPrincipalMenu(2);
 
 }
-
 
