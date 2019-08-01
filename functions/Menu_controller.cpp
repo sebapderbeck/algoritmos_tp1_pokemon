@@ -608,7 +608,7 @@ bool isValidNumber(int number) {
 }
 
 int isValidLetter(string letter) {
-    regex regex_letter_validation ("(T|t|F|f|E|e|A|a)");
+    regex regex_letter_validation ("^[TtFfEeAa]");
     smatch match;
     return regex_search(letter, match, regex_letter_validation);
 }
