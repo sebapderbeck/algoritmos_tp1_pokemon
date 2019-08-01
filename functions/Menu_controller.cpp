@@ -608,9 +608,9 @@ bool isValidNumber(int number) {
 }
 
 int isValidLetter(string letter) {
-    regex regex_letter_validation ("[^TtFfEeAa]");
+    regex regex_letter_validation ("(T|t|F|f|E|e|A|a)");
     smatch match;
-    return !regex_search(letter, match, regex_letter_validation);
+    return regex_search(letter, match, regex_letter_validation);
 }
 
 void changeLetterToUppercase(string &word) {
