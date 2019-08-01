@@ -47,8 +47,6 @@ void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);
 void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);               //function get information from user, ask how many records do you want to load
 void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);  //function that assigns the information to the struct
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons); //header that show how quantity remains to enter
-int getLimitPokemonInArray(); // pide al usuario un limite de pokemones para ingresar
-
 
 /* functios that control pokemons stats */
 void showPokemonsGroupByType(); //function show all types of pokemons order by type
@@ -59,10 +57,10 @@ void showPokemonsGroupByLevel();
 
 void showPokemonsWithHighestLevel();
 void showPokemonWithLessLevel();
-void cantidadDePokemonesPorTipo(tPokemon rPokemon[], int current_register_length); //Da la cantidad de pokemones por tipo
-void mostrarCantidadDePokemonesPorTipo(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico); //muestra los contadores
-void promedioNivelPorTipo(tPokemon rPokemon[], int current_register_length); //calcula el promedio de niveles por tipo
-void mostrarPromedioDeNivelPorTipo(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico); //muestra los promedios de niveles por tipo
+void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length); //Da la cantidad de pokemones por tipo
+void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico); //muestra los contadores
+void promLevelPerType(tPokemon rPokemon[], int current_register_length); //calcula el promedio de niveles por tipo
+void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico); //muestra los promedios de niveles por tipo
 
 /*functions that validate user data enter */
 bool isValidNumber(int number); //function that validate number
@@ -74,7 +72,7 @@ int main() {
     system("color 07");//Black background Color and white Text Color
     showLoadingBar();
     int current_register_length = 0;
-    tPokemon rPokemon[802];
+    tPokemon rPokemon[50];
     char key;
     int position = 1;
     int timer = 100;
@@ -319,7 +317,7 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
             }
         }
         else if (menu_selector == 2){
-            if (position == 1) cantidadDePokemonesPorTipo(rPokemon, current_register_length);  // show Pokemons Group By Type
+            if (position == 1) cantOfPokemonsPerType(rPokemon, current_register_length);  // show Pokemons Group By Type
             else if (position == 2){
                 menu_selector = 22;
                 showPrincipalMenu(menu_selector); // show Pokemons Group By Level
@@ -538,7 +536,7 @@ int getLimitPokemonInArray(){
     return n;
 }
 
-void cantidadDePokemonesPorTipo(tPokemon rPokemon[], int current_register_length){
+void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length){
     int contador_tierra = 0;
     int contador_fuego = 0;
     int contador_agua = 0;
@@ -554,10 +552,10 @@ void cantidadDePokemonesPorTipo(tPokemon rPokemon[], int current_register_length
             contador_electrico++;
         }
     }
-    mostrarCantidadDePokemonesPorTipo(contador_tierra, contador_fuego, contador_agua, contador_electrico);
+    showCantOfPokemonsPerType(contador_tierra, contador_fuego, contador_agua, contador_electrico);
 }
 
-void mostrarCantidadDePokemonesPorTipo(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico){
+void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico){
     system("CLS");
     gotoxy (32 , 22);
     cout << " LA CANTIDAD DE POKEMONES TIPO TIERRA ES: " << contador_tierra;
@@ -572,7 +570,7 @@ void mostrarCantidadDePokemonesPorTipo(int contador_tierra, int contador_fuego, 
     showPrincipalMenu(2);
 }
 
-void promedioNivelPorTipo(tPokemon rPokemon[], int current_register_length){
+void promLevelPerType(tPokemon rPokemon[], int current_register_length){
     int contador_tierra = 0;
     int contador_fuego = 0;
     int contador_agua = 0;
@@ -600,11 +598,11 @@ void promedioNivelPorTipo(tPokemon rPokemon[], int current_register_length){
     int promedio_fuego = total_nivel_fuego / contador_fuego;
     int promedio_agua= total_nivel_agua / contador_agua;
     int promedio_electrico = total_nivel_electrico / contador_electrico;
-    mostrarPromedioDeNivelPorTipo(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
+    showPromLevelPerType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
 
 }
 
-void mostrarPromedioDeNivelPorTipo(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico){
+void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico){
     system("CLS");
     gotoxy (32 , 22);
     cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO TIERRA ES: " << promedio_tierra;
