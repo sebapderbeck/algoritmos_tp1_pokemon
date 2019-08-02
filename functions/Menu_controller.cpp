@@ -537,10 +537,7 @@ int getLimitPokemonInArray(){
 }
 
 void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length){
-    int contador_tierra = 0;
-    int contador_fuego = 0;
-    int contador_agua = 0;
-    int contador_electrico = 0;
+    int contador_tierra = 0, int contador_fuego = 0, int contador_agua = 0, int contador_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "t"){
             contador_tierra++;
@@ -571,14 +568,7 @@ void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int cont
 }
 
 void promLevelPerType(tPokemon rPokemon[], int current_register_length){
-    int contador_tierra = 0;
-    int contador_fuego = 0;
-    int contador_agua = 0;
-    int contador_electrico = 0;
-    int total_nivel_tierra = 0;
-    int total_nivel_fuego = 0;
-    int total_nivel_agua = 0;
-    int total_nivel_electrico = 0;
+    int contador_tierra = 0, int contador_fuego = 0, int contador_agua = 0, int contador_electrico = 0, int total_nivel_tierra = 0, int total_nivel_fuego = 0, int total_nivel_agua = 0, int total_nivel_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "t"){
             contador_tierra++;
@@ -594,10 +584,7 @@ void promLevelPerType(tPokemon rPokemon[], int current_register_length){
             total_nivel_electrico += rPokemon[i].level;
         }
     }
-    int promedio_tierra = total_nivel_tierra / contador_tierra;
-    int promedio_fuego = total_nivel_fuego / contador_fuego;
-    int promedio_agua= total_nivel_agua / contador_agua;
-    int promedio_electrico = total_nivel_electrico / contador_electrico;
+    int promedio_tierra = total_nivel_tierra / contador_tierra, int promedio_fuego = total_nivel_fuego / contador_fuego, int promedio_agua= total_nivel_agua / contador_agua, int promedio_electrico = total_nivel_electrico / contador_electrico;
     showPromLevelPerType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
 
 }

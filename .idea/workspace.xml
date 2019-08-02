@@ -11,9 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7cb781e-0abd-425e-8d0b-3c160a937c72" name="Default Changelist" comment="Cambiadas las funciones a ingles, eliminada la que le pedia al usuario la cantidad de pokemones y puesto el limite de 50 como dijo el profe.">
+    <list default="true" id="a7cb781e-0abd-425e-8d0b-3c160a937c72" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dictionaries/Lisandro.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/functions/Menu_controller.cpp" beforeDir="false" afterPath="$PROJECT_DIR$/functions/Menu_controller.cpp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/clion-log.txt" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -22,16 +23,13 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="ClangdSettings">
-    <option name="formatViaClangd" value="false" />
-  </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/functions/Menu_controller.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="119">
-              <caret line="508" column="43" lean-forward="true" selection-start-line="508" selection-start-column="43" selection-end-line="508" selection-end-column="43" />
+            <state relative-caret-position="272">
+              <caret line="379" column="1" lean-forward="true" selection-end-line="620" />
             </state>
           </provider>
         </entry>
@@ -76,10 +74,10 @@
   </component>
   <component name="OCFindUsagesOptions" text="true" ivars="false" properties="true" derivedClasses="false" />
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-8" />
-    <option name="y" value="-8" />
-    <option name="width" value="1382" />
-    <option name="height" value="784" />
+    <option name="x" value="10" />
+    <option name="y" value="20" />
+    <option name="width" value="1346" />
+    <option name="height" value="688" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -130,7 +128,7 @@
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="c5fe29c0-8e56-408f-bff3-a9af35413660" name="Default Changelist" comment="" />
+      <changelist id="a7cb781e-0abd-425e-8d0b-3c160a937c72" name="Default Changelist" comment="" />
       <created>1559759299589</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
@@ -156,6 +154,8 @@
       <workItem from="1563639174544" duration="91000" />
       <workItem from="1563669800322" duration="773000" />
       <workItem from="1563720657931" duration="942000" />
+      <workItem from="1564699149219" duration="1309000" />
+      <workItem from="1564761520158" duration="234000" />
     </task>
     <task id="LOCAL-00001" summary="Create file - First Commit">
       <created>1559759390159</created>
@@ -388,17 +388,24 @@
       <option name="project" value="LOCAL" />
       <updated>1564668998271</updated>
     </task>
-    <option name="localTasksCounter" value="34" />
+    <task id="LOCAL-00034" summary="Cambiadas las funciones a ingles, eliminada la que le pedia al usuario la cantidad de pokemones y puesto el limite de 50 como dijo el profe.">
+      <created>1564669363434</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1564669363434</updated>
+    </task>
+    <option name="localTasksCounter" value="35" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="48120000" />
+    <option name="totallyTimeSpent" value="50136000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24962178" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.20272315" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -412,8 +419,8 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.3289689" />
       <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49924356" weight="0.32569557" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50075644" side_tool="true" weight="0.3289689" />
-      <window_info active="true" anchor="bottom" id="Messages" order="11" visible="true" weight="0.3289689" />
-      <window_info anchor="bottom" id="CMake" order="12" weight="0.3289689" />
+      <window_info anchor="bottom" id="Messages" order="11" weight="0.3289689" />
+      <window_info active="true" anchor="bottom" id="CMake" order="12" visible="true" weight="0.29787233" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -465,9 +472,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/Flujo de recorrido del usuario trabajo_practico_pokemon.png" />
     <entry file="file://C:/MinGW/lib/gcc/mingw32/8.2.0/include/c++/bits/regex.h" />
-    <entry file="file://$PROJECT_DIR$/main.cpp">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/Documentacion de Funciones">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="646">
@@ -477,10 +481,13 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/functions/Menu_controller.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="508" column="43" lean-forward="true" selection-start-line="508" selection-start-column="43" selection-end-line="508" selection-end-column="43" />
+        <state relative-caret-position="272">
+          <caret line="379" column="1" lean-forward="true" selection-end-line="620" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main.cpp">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
   <component name="masterDetails">
