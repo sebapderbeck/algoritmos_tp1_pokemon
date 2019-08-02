@@ -50,7 +50,7 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
 void showPokemonsGroupByType(); //function show all types of pokemons order by type
 
 void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsGroupByLevel (int level_higher, int level_lower, int lever_equal);
+void showPokemonsGroupByLevel(int level_higher, int level_lower, int lever_equal);
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);
 void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e);
@@ -447,19 +447,14 @@ void showPokemonsGroupByType() {
 }
 
 void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length) {
-    int level_higher = 0;
-    int level_lower = 0;
-    int level_equal = 0;
+    int level_higher = 0, level_lower = 0, level_equal = 0;
     for (int i = 0; i < current_register_length; i++){
-        if (rPokemon [i].level > 500){
+        if (rPokemon [i].level > 500)
             level_higher++;
-        }
-        else if (rPokemon [i].level < 500){
+        else if (rPokemon [i].level < 500)
             level_lower++;
-        }
-        else {
+        else
             level_equal++;
-        }
     }
     showPokemonsGroupByLevel (level_higher, level_lower, level_equal);
     showPrincipalMenu(2);
@@ -479,10 +474,8 @@ void showPokemonsGroupByLevel (int level_higher, int level_lower, int level_equa
 
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
-    int most_powerful_t = 0; //most powerful Pokémon earth type
-    int most_powerful_f = 0; //most powerful Pokémon fire type
-    int most_powerful_a = 0; //most powerful Pokémon water type
-    int most_powerful_e = 0; //most powerful Pokémon electric type
+    int most_powerful_t = 0, most_powerful_f = 0, most_powerful_a = 0, most_powerful_e = 0;
+    //most powerful Pokémon earth type, most powerful Pokémon fire type, most powerful Pokémon water type, most powerful Pokémon electric type
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
             if (rPokemon [i].level >= most_powerful_t)
@@ -507,7 +500,7 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
 
 void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e){
     system ("CLS");
-    showHeaderMenu(31); //MAS PODEROSO POR TIPO
+    showHeaderMenu(31); //most powerful Pokemon by type
     gotoxy (32 , 22);
     cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS ALTO ES: " << most_powerful_t;
     gotoxy (32 , 24);
@@ -521,10 +514,8 @@ void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int 
 }
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
-    int less_powerful_t = 1000; //less powerful Pokémon earth type
-    int less_powerful_f = 1000; //less powerful Pokémon fire type
-    int less_powerful_a = 1000; //less powerful Pokémon water type
-    int less_powerful_e = 1000; //less powerful Pokémon electric type
+    int less_powerful_t = 1000, less_powerful_f = 1000, less_powerful_a = 1000, less_powerful_e = 1000;
+    //less powerful Pokémon earth type, less powerful Pokémon fire type, less powerful Pokémon water type, less powerful Pokémon electric type
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
             if (rPokemon [i].level <= less_powerful_t)
@@ -549,7 +540,7 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
 
 void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int less_powerful_a, int less_powerful_e){
     system ("CLS");
-    showHeaderMenu(32); //MAS DEBIL POR TIPO
+    showHeaderMenu(32); //less powerful Pokemon by type
     gotoxy (32 , 22);
     cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS BAJO ES: " << less_powerful_t;
     gotoxy (32 , 24);
