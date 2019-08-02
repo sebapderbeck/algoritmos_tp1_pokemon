@@ -39,3 +39,4 @@ FUNCIONES DE ANIMACION
     <1> goodbyeMessage(): Muestra una animacion cuando el usuario sale del sistema
     <2> initialAnimation(): Muestra una animacion cuando el usuario ingresa el sistema
     <3> showLoadingBar(): Muestra una barra de carga
+    <4> userHelper(): Muestra un pequeño tutorial de que hace cada tecla

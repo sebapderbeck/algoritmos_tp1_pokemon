@@ -25,9 +25,10 @@ void hideCursor();
 void showCursor();
 
 /*  functions that animate the system  */
-void showLoadingBar(); // laoding bar
-void goodbyeMessage();    //exit message
-void initialAnimation();  //animation
+void showLoadingBar();    // laoding bar
+void goodbyeMessage();    // exit message
+void initialAnimation();  // animation
+void userHelper();        // Show keys can be used for user (TUTORIAL)
 
 /*  functions that control the position  */
 void resetPosition(int &position);                      //reset cursor position to initial position
@@ -50,7 +51,7 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
 void showPokemonsGroupByType(); //function show all types of pokemons order by type
 
 void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsGroupByLevel (int level_higher, int level_lower, int lever_equal);
+void showPokemonsGroupByLevel(int level_higher, int level_lower, int lever_equal);
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);
 void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e);
@@ -104,6 +105,7 @@ int main() {
     }
     return 0;
 }
+
 void initialAnimation() {
     gotoxy (15 , 5);
     cout << "   ::::::::          ::::::::::       :::        :::::::::::       :::::::::       :::::::::::  \n ";
@@ -382,6 +384,10 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
         }
         resetPosition(position);
     }
+    if (key == (int) 72 || key == (int) 104){
+        userHelper();
+        showPrincipalMenu(menu_selector);
+    }
 
 }
 
@@ -412,10 +418,6 @@ void showCursor() {
     SetConsoleCursorInfo (hCon , &cci);
 }
 
-void goodbyeMessage() {
-    system("CLS");
-    exit(0);
-}
 
 void getInformationFromFile() {
     ifstream filePokedex; //created object filePokedex of type ifstream
@@ -484,19 +486,14 @@ void showPokemonsGroupByType() {
 }
 
 void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_length) {
-    int level_higher = 0;
-    int level_lower = 0;
-    int level_equal = 0;
+    int level_higher = 0, level_lower = 0, level_equal = 0;
     for (int i = 0; i < current_register_length; i++){
-        if (rPokemon [i].level > 500){
+        if (rPokemon [i].level > 500)
             level_higher++;
-        }
-        else if (rPokemon [i].level < 500){
+        else if (rPokemon [i].level < 500)
             level_lower++;
-        }
-        else {
+        else
             level_equal++;
-        }
     }
     showPokemonsGroupByLevel (level_higher, level_lower, level_equal);
     showPrincipalMenu(2);
@@ -516,10 +513,8 @@ void showPokemonsGroupByLevel (int level_higher, int level_lower, int level_equa
 
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
-    int most_powerful_t = 0; //most powerful Pokémon earth type
-    int most_powerful_f = 0; //most powerful Pokémon fire type
-    int most_powerful_a = 0; //most powerful Pokémon water type
-    int most_powerful_e = 0; //most powerful Pokémon electric type
+    int most_powerful_t = 0, most_powerful_f = 0, most_powerful_a = 0, most_powerful_e = 0;
+    //most powerful Pokémon earth type, most powerful Pokémon fire type, most powerful Pokémon water type, most powerful Pokémon electric type
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
             if (rPokemon [i].level >= most_powerful_t)
@@ -544,7 +539,7 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
 
 void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e){
     system ("CLS");
-    showHeaderMenu(31); //MAS PODEROSO POR TIPO
+    showHeaderMenu(31); //most powerful Pokemon by type
     gotoxy (32 , 22);
     cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS ALTO ES: " << most_powerful_t;
     gotoxy (32 , 24);
@@ -558,10 +553,8 @@ void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int 
 }
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
-    int less_powerful_t = 1000; //less powerful Pokémon earth type
-    int less_powerful_f = 1000; //less powerful Pokémon fire type
-    int less_powerful_a = 1000; //less powerful Pokémon water type
-    int less_powerful_e = 1000; //less powerful Pokémon electric type
+    int less_powerful_t = 1000, less_powerful_f = 1000, less_powerful_a = 1000, less_powerful_e = 1000;
+    //less powerful Pokémon earth type, less powerful Pokémon fire type, less powerful Pokémon water type, less powerful Pokémon electric type
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
             if (rPokemon [i].level <= less_powerful_t)
@@ -586,7 +579,7 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
 
 void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int less_powerful_a, int less_powerful_e){
     system ("CLS");
-    showHeaderMenu(32); //MAS DEBIL POR TIPO
+    showHeaderMenu(32); //less powerful Pokemon by type
     gotoxy (32 , 22);
     cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS BAJO ES: " << less_powerful_t;
     gotoxy (32 , 24);
@@ -597,10 +590,6 @@ void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int l
     cout << "EL POKEMON ELECTRICO CON EL NIVEL MAS BAJO ES: " << less_powerful_e;
     gotoxy (32 , 32);
     system ("PAUSE");
-}
-
-bool isValidName(string name) {
-    return (name.size() < 10) ? true : false;
 }
 
 bool isValidNumber(int number) {
@@ -634,5 +623,30 @@ void showLoadingBar() {
     system("CLS");
 }
 
+void goodbyeMessage() {
+    system("CLS");
 
+    exit(0);
+}
+
+void userHelper() {
+    Sleep(150);
+    gotoxy (82 , 22);
+    cout << (char) 186 << " < W > : MOVER HACIA ARRIBA " << (char) 186;
+    Sleep(150);
+    gotoxy (82 , 24);
+    cout << (char) 186 << " < S > : MOVER HACIA ABAJO  " << (char) 186;
+    Sleep(150);
+    gotoxy (82 , 26);
+    cout << (char) 186 << " < H > : AYUDA DE TECLAS    " << (char) 186;
+    Sleep(150);
+    gotoxy (82 , 28);
+    cout << (char) 186 << " <ESC> : VOLVER | SALIR     " << (char) 186;
+    Sleep(150);
+    gotoxy (42 , 33);
+    cout << "#######################################";
+    gotoxy (42 , 32);
+    system ("PAUSE");
+    system("CLS");
+}
 
