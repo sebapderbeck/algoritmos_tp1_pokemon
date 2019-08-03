@@ -384,7 +384,7 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
         }
         resetPosition(position);
     }
-    if (key == (int) 72 || key == (int) 104){
+    if (key == (int) 75 || key == (int) 107){ //K
         userHelper();
         showPrincipalMenu(menu_selector);
     }
