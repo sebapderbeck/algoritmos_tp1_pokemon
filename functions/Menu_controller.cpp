@@ -65,7 +65,7 @@ void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_
 /*functions that validate user data enter */
 bool isValidNumber(int number); //function that validate number
 int isValidLetter(string letter);       //function that validate key
-
+bool isValidName (string name);      //function thar validate the name
 
 
 int main() {
@@ -455,14 +455,42 @@ void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_reg
     gotoxy (32 , 22);
     cout << "   TIPO DE POKEMON: ";
     cin >> rPokemon[current_register_length].type;
-
+    while (!isValidLetter(rPokemon[current_register_length].type)) {
+        gotoxy(32 , 24);
+        cout << "  TIPO INVALIDO, por favor ingresar t, f, a, e.  ";
+        gotoxy (32 , 26);
+        system ("PAUSE");
+        system ("CLS");
+        gotoxy(32 , 22);
+        cout << "   TIPO DE POKEMON: ";
+        cin >> rPokemon[current_register_length].type;
+    }
     gotoxy (32 , 24);
     cout << "   NIVEL DE POKEMON: ";
     cin >> rPokemon[current_register_length].level;
-
+    while (!isValidNumber(rPokemon[current_register_length].level)) {
+        gotoxy(32 , 26);
+        cout << "  NIVEL INVALIDO, por favor ingresar un valor entre 1 y 1000  ";
+        gotoxy (32 , 28);
+        system ("PAUSE");
+        system ("CLS");
+        gotoxy(32 , 24);
+        cout << "   NIVEL DE POKEMON: ";
+        cin >> rPokemon[current_register_length].level;
+    }
     gotoxy (32 , 26);
     cout << "   NOMBRE DE POKEMON: ";
     cin >> rPokemon[current_register_length].name;
+    while (!isValidName (rPokemon[current_register_length].name)){
+        gotoxy(32 , 28);
+        cout << "  NOMBRE INVALIDO, por favor ingresar un nombre con menos de 10 caracteres  ";
+        gotoxy (32 , 30);
+        system ("PAUSE");
+        system ("CLS");
+        gotoxy(32 , 26);
+        cout << "   NOMBRE DE POKEMON: ";
+        cin >> rPokemon[current_register_length].name
+    }
 
     enterInformationIntoFile(rPokemon, current_register_length);
 }
@@ -508,6 +536,9 @@ void showPokemonWithLessLevel() {
 bool isValidNumber(int number) {
     return (number <= 1000 && number >= 1);
 }
+bool isValidName (string name) {
+     return (name.size() <= 10);
+}
 
 int isValidLetter(string letter) {
     regex regex_letter_validation ("[^TtFfEeAa]");
@@ -537,7 +568,7 @@ int getLimitPokemonInArray(){
 }
 
 void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length){
-    int contador_tierra = 0, int contador_fuego = 0, int contador_agua = 0, int contador_electrico = 0;
+    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "t"){
             contador_tierra++;
@@ -568,7 +599,7 @@ void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int cont
 }
 
 void promLevelPerType(tPokemon rPokemon[], int current_register_length){
-    int contador_tierra = 0, int contador_fuego = 0, int contador_agua = 0, int contador_electrico = 0, int total_nivel_tierra = 0, int total_nivel_fuego = 0, int total_nivel_agua = 0, int total_nivel_electrico = 0;
+    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0, total_nivel_tierra = 0, total_nivel_fuego = 0, total_nivel_agua = 0, total_nivel_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "t"){
             contador_tierra++;
@@ -584,7 +615,10 @@ void promLevelPerType(tPokemon rPokemon[], int current_register_length){
             total_nivel_electrico += rPokemon[i].level;
         }
     }
-    int promedio_tierra = total_nivel_tierra / contador_tierra, int promedio_fuego = total_nivel_fuego / contador_fuego, int promedio_agua= total_nivel_agua / contador_agua, int promedio_electrico = total_nivel_electrico / contador_electrico;
+    int promedio_tierra = total_nivel_tierra / contador_tierra;
+    int promedio_fuego = total_nivel_fuego / contador_fuego;
+    int promedio_agua= total_nivel_agua / contador_agua;
+    int promedio_electrico = total_nivel_electrico / contador_electrico;
     showPromLevelPerType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
 
 }
