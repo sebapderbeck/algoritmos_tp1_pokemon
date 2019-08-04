@@ -592,7 +592,7 @@ void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_reg
     enterInformationIntoFile(rPokemon, current_register_length);
 }
 
-void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
+void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons) {
     system("CLS");
     gotoxy (20 , 14);
     cout << (char) 201; //Upper left corner
@@ -762,7 +762,7 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
     showPrincipalMenu(23);
 }
 
-void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest){
+void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest) {
     system ("CLS");
     string power_measure;
     if (is_highest_or_lowest){
