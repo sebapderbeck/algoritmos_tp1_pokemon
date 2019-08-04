@@ -54,10 +54,9 @@ void computePokemonsGroupByLevel(tPokemon rPokemon[], int current_register_lengt
 void showPokemonsGroupByLevel(int level_higher, int level_lower, int lever_equal);
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e);
-
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int less_powerful_a, int less_powerful_e);
+void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest);
+
 
 
 /*functions that validate user data enter */
@@ -533,23 +532,8 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
                 most_powerful_e = rPokemon [i].level;
         }
     }
-    showPokemonsWithHighestLevel(most_powerful_t, most_powerful_f, most_powerful_a, most_powerful_e);
+    showPokemonsWithHighestAndLowestLevel(most_powerful_t, most_powerful_f, most_powerful_a, most_powerful_e, true);
     showPrincipalMenu(23);
-}
-
-void showPokemonsWithHighestLevel(int most_powerful_t, int most_powerful_f, int most_powerful_a, int most_powerful_e){
-    system ("CLS");
-    showHeaderMenu(31); //most powerful Pokemon by type
-    gotoxy (32 , 22);
-    cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS ALTO ES: " << most_powerful_t;
-    gotoxy (32 , 24);
-    cout << "EL POKEMON DE FUEGO CON EL NIVEL MAS ALTO ES: " << most_powerful_f;
-    gotoxy (32 , 26);
-    cout << "EL POKEMON DE AGUA CON EL NIVEL MAS ALTO ES: " << most_powerful_a;
-    gotoxy (32 , 28);
-    cout << "EL POKEMON ELECTRICO CON EL NIVEL MAS ALTO ES: " << most_powerful_e;
-    gotoxy (32 , 32);
-    system ("PAUSE");
 }
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
@@ -573,21 +557,32 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
                 less_powerful_e = rPokemon [i].level;
         }
     }
-    showPokemonsWithLowestLevel(less_powerful_t, less_powerful_f, less_powerful_a, less_powerful_e);
+    showPokemonsWithHighestAndLowestLevel(less_powerful_t, less_powerful_f, less_powerful_a, less_powerful_e, false);
     showPrincipalMenu(23);
 }
 
-void showPokemonsWithLowestLevel(int less_powerful_t, int less_powerful_f, int less_powerful_a, int less_powerful_e){
+void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest){
     system ("CLS");
-    showHeaderMenu(32); //less powerful Pokemon by type
+    string power_measure;
+    if (is_highest_or_lowest){
+        showHeaderMenu(31); //most powerful Pokemon by type
+        power_measure = "MAS ALTO";
+    }
+    else {
+        showHeaderMenu(32); //less powerful Pokemon by type
+        power_measure = "MAS BAJO";
+    }
+    //string power_measure = is_highest_or_lowest ? "MAS ALTO" : "MAS BAJO";
+    //is_highest_or_lowest ? showHeaderMenu(31) : showHeaderMenu(32);
+
     gotoxy (32 , 22);
-    cout << "EL POKEMON DE TIERRA CON EL NIVEL MAS BAJO ES: " << less_powerful_t;
+    cout << "EL POKEMON DE TIERRA CON EL NIVEL " << power_measure << " ES: " << level_pokemon_t;
     gotoxy (32 , 24);
-    cout << "EL POKEMON DE FUEGO CON EL NIVEL MAS BAJO ES: " << less_powerful_f;
+    cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_f;
     gotoxy (32 , 26);
-    cout << "EL POKEMON DE AGUA CON EL NIVEL MAS BAJO ES: " << less_powerful_a;
+    cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << level_pokemon_a;
     gotoxy (32 , 28);
-    cout << "EL POKEMON ELECTRICO CON EL NIVEL MAS BAJO ES: " << less_powerful_e;
+    cout << "EL POKEMON DE ELECTRICO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_e;
     gotoxy (32 , 32);
     system ("PAUSE");
 }
