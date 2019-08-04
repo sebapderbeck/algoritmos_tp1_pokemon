@@ -560,21 +560,14 @@ void showLoadingBar() {
     system("CLS");
 }
 
-int getLimitPokemonInArray(){
-    int n;
-    cout << " ingrese la cantidad máxima de pokemones: ";
-    cin >> n;
-    return n;
-}
-
 void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length){
     int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
-        if (rPokemon[i].type == "t"){
+        if (rPokemon[i].type == "T"){
             contador_tierra++;
-        } else if (rPokemon[i].type == "f"){
+        } else if (rPokemon[i].type == "F"){
             contador_fuego++;
-        } else if (rPokemon[i].type == "a"){
+        } else if (rPokemon[i].type == "A"){
             contador_agua++;
         } else {
             contador_electrico++;
@@ -638,4 +631,3 @@ void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_
     showPrincipalMenu(2);
 
 }
-
