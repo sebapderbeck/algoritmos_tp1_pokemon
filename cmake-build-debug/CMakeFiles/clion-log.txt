@@ -1,4 +1,1 @@
-"C:\Program Files\JetBrains\CLion 2019.1.4\bin\cmake\win\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -DCMAKE_CXX_COMPILER=C:/MinGW/bin/mingw32-c++.exe -G "CodeBlocks - MinGW Makefiles" C:\Users\sopderbeck\CLionProjects\algoritmos_tp1_pokemon
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/sopderbeck/CLionProjects/algoritmos_tp1_pokemon/cmake-build-debug
+Toolchains are not configured Configure

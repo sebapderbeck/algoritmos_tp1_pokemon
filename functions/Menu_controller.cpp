@@ -42,9 +42,11 @@ void showPrincipalMenu(int menu_selector);                                   //s
 void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
 
 /*  functions that control the pokedex information  */
-void getInformationFromFile();                          //function get information from file
-void showMenuToEnterInformationFromUser();              //function get information from user, ask how many records do you want to load
-void showTemplateToEnterInformationFromUser(int step);  //function that assigns the information to the struct
+void getInformationFromFile(tPokemon rPokemon[], int &current_register_length);                            //function load information from file
+void ShowTemplateToEnterNameFromFile(char * name_file);                                                                 // function that show text to enter the name of file
+void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);                          //function that enter information
+void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);               //function get information from user, ask how many records do you want to load
+void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);  //function that assigns the information to the struct
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons); //header that show how quantity remains to enter
 
 /* functios that control pokemons stats */
@@ -70,7 +72,7 @@ int main() {
     showLoadingBar();
 
     int current_register_length = 0;
-    tPokemon rPokemon[802];
+    tPokemon rPokemon[50];
 
     char key;
     int position = 1;
@@ -148,7 +150,7 @@ void showPrincipalMenu(int menu_selector) {
         cout << "    INGRESAR INFORMACION MANUALMENTE     ";
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "   INGRESAR INFORMACION DE UN ARCHIVO    ";
+        cout << "    CARGAR INFORMACION DE UN ARCHIVO    ";
         Sleep(50);
         gotoxy (32 , 26);
         cout << "                 VOLVER                  ";
@@ -240,6 +242,19 @@ void showHeaderMenu(int menu_selector) {
 
         gotoxy (20 , 15);
         cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
+    }
+    else if (menu_selector == 12){
+        gotoxy (19 , 14);
+        cout << (char) 201; //Upper left corner
+        gotoxy (19 , 16);
+        cout << (char) 200; //Lower left corner
+        gotoxy (52 , 14);
+        cout << (char) 187; //Upper right corner
+        gotoxy (52 , 16);
+        cout << (char) 188; //Lower right corner
+
+        gotoxy (20 , 15);
+        cout << "CARGAR INFORMACION DE UN ARCHIVO";
     }
     else if (menu_selector == 2){
         gotoxy (19 , 14);
@@ -335,8 +350,8 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
             else if (position == 3) goodbyeMessage();  //close program
         }
         else if (menu_selector == 1){
-            if (position == 1) showMenuToEnterInformationFromUser();
-            else if (position == 2) getInformationFromFile();
+            if (position == 1) showMenuToEnterInformationFromUser(rPokemon, current_register_length);
+            else if (position == 2) getInformationFromFile(rPokemon, current_register_length);
             else if (position == 3){
                 menu_selector = 0;
                 showPrincipalMenu(menu_selector); //back to principal menu
@@ -418,19 +433,48 @@ void showCursor() {
 }
 
 
-void getInformationFromFile() {
-    ifstream filePokedex; //created object filePokedex of type ifstream
-    int lenght = 500;     //file size
-    char * buffer = new char [lenght]; //variable temporal
-    filePokedex.open("pokedex.dat", ios::in | ios::binary); //open file
+void ShowTemplateToEnterNameFromFile(char * name_file) {
+    system("CLS");
+    showCursor();
+    showHeaderMenu(12);
+    char * extension = ".dat";
 
-    while(!filePokedex.eof()) {
-        filePokedex.read(buffer, lenght);
-    }
-    filePokedex.close();
+    gotoxy (32 , 22);
+    cout << "INGRESAR EL NOMBRE DEL ARCHIVO: ";
+    cin >> name_file;
+
+    strcat(name_file, extension);
+    hideCursor();
 }
 
-void showMenuToEnterInformationFromUser() {
+void getInformationFromFile(tPokemon rPokemon[], int &current_register_length) {
+    FILE * filePokedex; //create file
+    tPokemon rTemporalPokemon;
+    char * name_file;
+    ShowTemplateToEnterNameFromFile(name_file);
+    filePokedex = fopen (name_file, "rb"); //open file in mode read
+    if (filePokedex != NULL){
+        fread (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex);
+        while (!feof(filePokedex)){
+            rPokemon[current_register_length].type  = rTemporalPokemon.type;
+            rPokemon[current_register_length].level = rTemporalPokemon.level;
+            rPokemon[current_register_length].name  = rTemporalPokemon.name;
+            current_register_length ++;
+            fread (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex);
+        }
+    }
+    fclose (filePokedex); //close file
+}
+
+void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length) {
+    FILE *filePokedex; //create file
+    filePokedex = fopen ("pokedex.dat","wb"); //open file in mode write
+    tPokemon rTemporalPokemon = rPokemon[current_register_length];
+    fwrite (&rTemporalPokemon, sizeof(rTemporalPokemon), 1, filePokedex); //write one line into file
+    fclose (filePokedex); //close file
+}
+
+void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length) {
     system("CLS");
     showHeaderMenu(11); //INGRESAR INFORMACION MANUALMENTE
     showCursor();
@@ -440,31 +484,80 @@ void showMenuToEnterInformationFromUser() {
     cin >> quantity_limit_pokemons;
     for (int current_quantity = 0; current_quantity < quantity_limit_pokemons; current_quantity++){
         showHeaderQuantityRemainsToEnter(current_quantity, quantity_limit_pokemons);
-        for (int step = 1; step < 4; step++){
-            showTemplateToEnterInformationFromUser(step);
-        }
+        showTemplateToEnterInformationFromUser(rPokemon, current_register_length);
+        current_register_length ++;
+    }
+    system("CLS");
+    showPrincipalMenu(1);
+}
+
+void showErrorMessage (int error) {
+    if(error == 1){
+        gotoxy(32 , 24);
+        cout << "   TIPO INVALIDO    ";
+        gotoxy (35 , 26);
+        Sleep(1000);
+        gotoxy(32 , 24);
+        cout << "                    ";
+        gotoxy(52 , 22);
+        cout << "                    ";
+    }
+    else if (error == 2){
+        gotoxy(32 , 26);
+        cout << "   NIVEL INVALIDO   ";
+        gotoxy (35 , 28);
+        Sleep(1000);
+        gotoxy(32 , 26);
+        cout << "                    ";
+        gotoxy(52 , 24);
+        cout << "                    ";
+    }
+    else if (error == 3){
+        gotoxy(32 , 28);
+        cout << "   NOMBRE INVALIDO  ";
+        gotoxy (32 , 30);
+        Sleep(1000);
+        gotoxy(32 , 28);
+        cout << "                    ";
+        gotoxy(52 , 26);
+        cout << "                    ";
     }
 }
 
-void showTemplateToEnterInformationFromUser(int step) {
-    string type, name;
-    int level;
-    if (step == 1){
-        gotoxy (32 , 22);
+void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length) {
+    gotoxy (32 , 22);
+    cout << "   TIPO DE POKEMON: ";
+    cin >> rPokemon[current_register_length].type;
+    while (!isValidLetter(rPokemon[current_register_length].type)) {
+        showErrorMessage(1);
+        gotoxy(32 , 22);
         cout << "   TIPO DE POKEMON: ";
-        cin >> type;
+        cin >> rPokemon[current_register_length].type;
     }
-    else if (step == 2){
-        gotoxy (32 , 24);
+
+    gotoxy (32 , 24);
+    cout << "   NIVEL DE POKEMON: ";
+    cin >> rPokemon[current_register_length].level;
+    while (!isValidNumber(rPokemon[current_register_length].level)) {
+        showErrorMessage(2);
+        gotoxy(32 , 24);
         cout << "   NIVEL DE POKEMON: ";
-        cin >> level;
+        cin >> rPokemon[current_register_length].level;
     }
-    else if (step == 3){
-        gotoxy (32 , 26);
+
+    gotoxy (32 , 26);
+    cout << "   NOMBRE DE POKEMON: ";
+    cin >> rPokemon[current_register_length].name;
+    while (!isValidName (rPokemon[current_register_length].name)){
+        showErrorMessage(3);
+        gotoxy(32 , 26);
         cout << "   NOMBRE DE POKEMON: ";
-        cin >> name;
+        cin >> rPokemon[current_register_length].name;
     }
+
+    enterInformationIntoFile(rPokemon, current_register_length);
 }
+
 void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons){
     system("CLS");
     gotoxy (20 , 14);
@@ -477,7 +570,7 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
-    cout << " POKEMONS INGRESADOS " << current_quantity << " / " << quantity_limit_pokemons;
+    cout << " POKEMONS INGRESADOS " << current_quantity + 1 << " / " << quantity_limit_pokemons;
 }
 
 void showPokemonsGroupByType() {
@@ -510,7 +603,6 @@ void showPokemonsGroupByLevel (int level_higher, int level_lower, int level_equa
     system ("PAUSE");
 }
 
-
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
     int most_powerful_t = 0, most_powerful_f = 0, most_powerful_a = 0, most_powerful_e = 0;
     //most powerful Pokémon earth type, most powerful Pokémon fire type, most powerful Pokémon water type, most powerful Pokémon electric type
@@ -534,7 +626,6 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
     }
     showPokemonsWithHighestAndLowestLevel(most_powerful_t, most_powerful_f, most_powerful_a, most_powerful_e, true);
     showPrincipalMenu(23);
-}
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
     int less_powerful_t = 1000, less_powerful_f = 1000, less_powerful_a = 1000, less_powerful_e = 1000;
@@ -588,7 +679,10 @@ void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokem
 }
 
 bool isValidNumber(int number) {
-    return (number <= 1000 && number >= 1) ? true : false;
+    return (number <= 1000 && number >= 1);
+}
+bool isValidName (string name) {
+    return (name.size() <= 10);
 }
 
 int isValidLetter(string letter) {
@@ -618,30 +712,99 @@ void showLoadingBar() {
     system("CLS");
 }
 
-void goodbyeMessage() {
-    system("CLS");
-
-    exit(0);
+void cantOfPokemonsPerType(tPokemon rPokemon[], int current_register_length) {
+    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0;
+    for (int i = 0; i < current_register_length; i++){
+        if (rPokemon[i].type == "T"){
+            contador_tierra++;
+        } else if (rPokemon[i].type == "F"){
+            contador_fuego++;
+        } else if (rPokemon[i].type == "A"){
+            contador_agua++;
+        } else {
+            contador_electrico++;
+        }
+    }
+    showCantOfPokemonsPerType(contador_tierra, contador_fuego, contador_agua, contador_electrico);
 }
 
-void userHelper() {
-    Sleep(150);
-    gotoxy (82 , 22);
-    cout << (char) 186 << " < W > : MOVER HACIA ARRIBA " << (char) 186;
-    Sleep(150);
-    gotoxy (82 , 24);
-    cout << (char) 186 << " < S > : MOVER HACIA ABAJO  " << (char) 186;
-    Sleep(150);
-    gotoxy (82 , 26);
-    cout << (char) 186 << " < K > : AYUDA DE TECLAS    " << (char) 186;
-    Sleep(150);
-    gotoxy (82 , 28);
-    cout << (char) 186 << " <ESC> : VOLVER | SALIR     " << (char) 186;
-    Sleep(150);
-    gotoxy (42 , 33);
-    cout << "#######################################";
-    gotoxy (42 , 32);
-    system ("PAUSE");
+void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico) {
     system("CLS");
+    gotoxy (32 , 22);
+    cout << " LA CANTIDAD DE POKEMONES TIPO TIERRA ES: " << contador_tierra;
+    gotoxy (32 , 24);
+    cout << " LA CANTIDAD DE POKEMONES TIPO FUEGO ES: " << contador_fuego;
+    gotoxy (32 , 26);
+    cout << " LA CANTIDAD DE POKEMONES TIPO AGUA ES: " << contador_agua;
+    gotoxy (32 , 28);
+    cout << " LA CANTIDAD DE POKEMONES TIPO ELECTRICO ES: " << contador_electrico;
+    gotoxy (32 , 32);
+    system("PAUSE");
+    showPrincipalMenu(2);
 }
 
+void promLevelPerType(tPokemon rPokemon[], int current_register_length){
+    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0, total_nivel_tierra = 0, total_nivel_fuego = 0, total_nivel_agua = 0, total_nivel_electrico = 0;
+    for (int i = 0; i < current_register_length; i++){
+        if (rPokemon[i].type == "T"){
+            contador_tierra ++;
+            total_nivel_tierra += rPokemon[i].level;
+        } else if (rPokemon[i].type == "F"){
+            contador_fuego ++;
+            total_nivel_fuego += rPokemon[i].level;
+        } else if (rPokemon[i].type == "A"){
+            contador_agua ++;
+            total_nivel_agua += rPokemon[i].level;
+        } else {
+            contador_electrico ++;
+            total_nivel_electrico += rPokemon[i].level;
+        }
+    }
+    int promedio_tierra = total_nivel_tierra / contador_tierra;
+    int promedio_fuego = total_nivel_fuego / contador_fuego;
+    int promedio_agua= total_nivel_agua / contador_agua;
+    int promedio_electrico = total_nivel_electrico / contador_electrico;
+    showPromLevelPerType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
+}
+
+void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico) {
+    system("CLS");
+    gotoxy (32 , 22);
+    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO TIERRA ES: " << promedio_tierra;
+    gotoxy (32 , 24);
+    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO FUEGO ES: " << promedio_fuego;
+    gotoxy (32 , 26);
+    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO AGUA ES: " << promedio_agua;
+    gotoxy (32 , 28);
+    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO ELECTRICO ES: " << promedio_electrico;
+    gotoxy (32 , 32);
+    system("PAUSE");
+    showPrincipalMenu(2);
+}
+
+    void goodbyeMessage() {
+        system("CLS");
+
+        exit(0);
+    }
+
+    void userHelper() {
+        Sleep(150);
+        gotoxy (82 , 22);
+        cout << (char) 186 << " < W > : MOVER HACIA ARRIBA " << (char) 186;
+        Sleep(150);
+        gotoxy (82 , 24);
+        cout << (char) 186 << " < S > : MOVER HACIA ABAJO  " << (char) 186;
+        Sleep(150);
+        gotoxy (82 , 26);
+        cout << (char) 186 << " < K > : AYUDA DE TECLAS    " << (char) 186;
+        Sleep(150);
+        gotoxy (82 , 28);
+        cout << (char) 186 << " <ESC> : VOLVER | SALIR     " << (char) 186;
+        Sleep(150);
+        gotoxy (42 , 33);
+        cout << "#######################################";
+        gotoxy (42 , 32);
+        system ("PAUSE");
+        system("CLS");
+    }
