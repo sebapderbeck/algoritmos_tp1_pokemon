@@ -638,7 +638,7 @@ void userHelper() {
     cout << (char) 186 << " < S > : MOVER HACIA ABAJO  " << (char) 186;
     Sleep(150);
     gotoxy (82 , 26);
-    cout << (char) 186 << " < H > : AYUDA DE TECLAS    " << (char) 186;
+    cout << (char) 186 << " < K > : AYUDA DE TECLAS    " << (char) 186;
     Sleep(150);
     gotoxy (82 , 28);
     cout << (char) 186 << " <ESC> : VOLVER | SALIR     " << (char) 186;
