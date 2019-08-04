@@ -451,45 +451,71 @@ void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_regist
     showPrincipalMenu(1);
 }
 
+void showErrorMessage (int error) {
+    if(error == 1){
+        gotoxy(32 , 24);
+        cout << "   TIPO INVALIDO    ";
+        gotoxy (35 , 26);
+        Sleep(1000);
+        gotoxy(32 , 24);
+        cout << "                    ";
+        gotoxy(52 , 22);
+        cout << "                    ";
+    }
+    else if (error == 2){
+        gotoxy(32 , 26);
+        cout << "   NIVEL INVALIDO   ";
+        gotoxy (35 , 28);
+        Sleep(1000);
+        gotoxy(32 , 26);
+        cout << "                    ";
+        gotoxy(52 , 24);
+        cout << "                    ";
+    }
+    else if (error == 3){
+        gotoxy(32 , 28);
+        cout << "   NOMBRE INVALIDO  ";
+        gotoxy (32 , 30);
+        Sleep(1000);
+        gotoxy(32 , 28);
+        cout << "                    ";
+        gotoxy(52 , 26);
+        cout << "                    ";
+    }
+}
+showHeaderQuantityRemainsToEnter() {
+
+}
+
 void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length) {
     gotoxy (32 , 22);
     cout << "   TIPO DE POKEMON: ";
     cin >> rPokemon[current_register_length].type;
     while (!isValidLetter(rPokemon[current_register_length].type)) {
-        gotoxy(32 , 24);
-        cout << "  TIPO INVALIDO, por favor ingresar t, f, a, e.  ";
-        gotoxy (32 , 26);
-        system ("PAUSE");
-        system ("CLS");
+        showErrorMessage(1);
         gotoxy(32 , 22);
         cout << "   TIPO DE POKEMON: ";
         cin >> rPokemon[current_register_length].type;
     }
+
     gotoxy (32 , 24);
     cout << "   NIVEL DE POKEMON: ";
     cin >> rPokemon[current_register_length].level;
     while (!isValidNumber(rPokemon[current_register_length].level)) {
-        gotoxy(32 , 26);
-        cout << "  NIVEL INVALIDO, por favor ingresar un valor entre 1 y 1000  ";
-        gotoxy (32 , 28);
-        system ("PAUSE");
-        system ("CLS");
+        showErrorMessage(2);
         gotoxy(32 , 24);
         cout << "   NIVEL DE POKEMON: ";
         cin >> rPokemon[current_register_length].level;
     }
+
     gotoxy (32 , 26);
     cout << "   NOMBRE DE POKEMON: ";
     cin >> rPokemon[current_register_length].name;
     while (!isValidName (rPokemon[current_register_length].name)){
-        gotoxy(32 , 28);
-        cout << "  NOMBRE INVALIDO, por favor ingresar un nombre con menos de 10 caracteres  ";
-        gotoxy (32 , 30);
-        system ("PAUSE");
-        system ("CLS");
+        showErrorMessage(3);
         gotoxy(32 , 26);
         cout << "   NOMBRE DE POKEMON: ";
-        cin >> rPokemon[current_register_length].name
+        cin >> rPokemon[current_register_length].name;
     }
 
     enterInformationIntoFile(rPokemon, current_register_length);
@@ -537,7 +563,7 @@ bool isValidNumber(int number) {
     return (number <= 1000 && number >= 1);
 }
 bool isValidName (string name) {
-     return (name.size() <= 10);
+    return (name.size() <= 10);
 }
 
 int isValidLetter(string letter) {
@@ -594,17 +620,17 @@ void showCantOfPokemonsPerType(int contador_tierra, int contador_fuego, int cont
 void promLevelPerType(tPokemon rPokemon[], int current_register_length){
     int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0, total_nivel_tierra = 0, total_nivel_fuego = 0, total_nivel_agua = 0, total_nivel_electrico = 0;
     for (int i = 0; i < current_register_length; i++){
-        if (rPokemon[i].type == "t"){
-            contador_tierra++;
+        if (rPokemon[i].type == "T"){
+            contador_tierra ++;
             total_nivel_tierra += rPokemon[i].level;
-        } else if (rPokemon[i].type == "f"){
-            contador_fuego++;
+        } else if (rPokemon[i].type == "F"){
+            contador_fuego ++;
             total_nivel_fuego += rPokemon[i].level;
-        } else if (rPokemon[i].type == "a"){
-            contador_agua++;
+        } else if (rPokemon[i].type == "A"){
+            contador_agua ++;
             total_nivel_agua += rPokemon[i].level;
         } else {
-            contador_electrico++;
+            contador_electrico ++;
             total_nivel_electrico += rPokemon[i].level;
         }
     }
@@ -613,7 +639,6 @@ void promLevelPerType(tPokemon rPokemon[], int current_register_length){
     int promedio_agua= total_nivel_agua / contador_agua;
     int promedio_electrico = total_nivel_electrico / contador_electrico;
     showPromLevelPerType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico);
-
 }
 
 void showPromLevelPerType(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico){
