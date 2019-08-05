@@ -19,62 +19,62 @@ struct tPokemon {
     string name;
 };
 
-void gotoxy(int x, int y); //set cursor in position(x,y) into terminal
-
+/* functions to control cursor */
+void gotoxy(int x, int y); //sets cursor in position(x,y) into terminal
 void hideCursor();
 void showCursor();
 
-/*  functions that animate the system  */
-void showLoadingBar();    // laoding bar
-void goodbyeMessage();    // exit message
+/*  functions to animate the system  */
 void initialAnimation();  // animation
-void userHelper();        // Show keys can be used for user (TUTORIAL)
+void showLoadingBar();    // laoding bar
+void userHelper();        // shows keys can be used for user (TUTORIAL)
+void goodbyeMessage();    // exit message
 
-/*  functions that control the position  */
-void resetPosition(int &position);                      //reset cursor position to initial position
-void changePosition(char key, int &position);           //change arrows position from next position
+/*  functions to control the position  */
+void resetPosition(int &position);                      //resets cursor position to initial position
+void changePosition(char key, int &position);           //changes arrows position from next position
 void showNewPosition(int position);                     //prints arrows in current position
 void removeLastPosition(int position);                  //removes the last position in which the arrow was
 
-/*  functions that control the menu  */
+/*  functions to control the menu  */
 void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon rPokemon[], int &current_register_length);     //principal function for show second menu
-void showPrincipalMenu(int menu_selector);                                   //show principal menu, names of functions
-void showHeaderMenu(int menu_selector);                                      //show last menu for know where are you from
+void showPrincipalMenu(int menu_selector);                                                                                      //shows principal menu, names of functions
+void showHeaderMenu(int menu_selector);                                                                                         //shows last menu for know where are you from
 
-/*  functions that control the pokedex information  */
-void getInformationFromFile(tPokemon rPokemon[], int &current_register_length);                             //function load information from file
-void ShowTemplateToEnterNameFromFile(char * name_file);                                                     // function that show text to enter the name of file
-void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);                            //function that enter information
+/*  functions to control the Pokedex information  */
+void getInformationFromFile(tPokemon rPokemon[], int &current_register_length);                             //loads information from file
+void ShowTemplateToEnterNameFromFile(char * name_file);                                                     //shows text to enter the name of file
+void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length);                            //enters information
 
-void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);                 //function get information from user, ask how many records do you want to load
-void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);              //function that assigns the information to the struct
-void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons);                   //header that show how quantity remains to enter
+void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length);                 //gets information from user, asks them how many records they want to load
+void showTemplateToEnterInformationFromUser(tPokemon rPokemon[], int current_register_length);              //assigns the information to the struct
+void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_pokemons);                   //shows remaining quantity to enter
 
-/* functios that control pokemons stats */
-void computePokemonsGroupedByLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsGroupedByLevel(int level_higher, int level_lower, int lever_equal);
+/* functions to control Pokemons stats */
+void computePokemonsGroupedByLevel(tPokemon rPokemon[], int current_register_length);                       //counts how many Pokemons are level 500 and how many are below or over that level
+void showPokemonsGroupedByLevel(int level_higher, int level_lower, int lever_equal);                        //shows the number of Pokemons with level below 500, over 500 or equal to 500
 
-void computeQuantityOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length);
-void showQuantityOfPokemonsGroupedByType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico);
+void computeQuantityOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length);                                          //counts how many Pokemons of each type were loaded in the system
+void showQuantityOfPokemonsGroupedByType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico);           //shows how many Pokemons belong to each type
 
-void quantityOfPokemonsInThePokedex(tPokemon rPokemon[], int current_register_length, int &contador_tierra, int &contador_fuego, int &contador_agua, int &contador_electrico);
+void quantityOfPokemonsInThePokedex(tPokemon rPokemon[], int current_register_length, int &contador_tierra, int &contador_fuego, int &contador_agua, int &contador_electrico);      //counts the total number of Pokemons loaded in the system
 
-void computeLevelAverageOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length);
-void showLevelAverageOfPokemonsGroupedByType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico);
+void computeLevelAverageOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length);                                          //takes every Pokemon of each type and calculates the average of their levels
+void showLevelAverageOfPokemonsGroupedByType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico);           //shows the average level in each type category
 
-void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);
-void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length);
-void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest);
+void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);                                                                             //looks at every Pokemon and returns the one with the highest level
+void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length);                                                                              //looks at every Pokemon and returns the one with the lowest level
+void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest);         //shows Pokemons with highest or lowest level
 
-/*functions that validate user data enter */
-bool isValidNumber(int number);             //function that validate number
-int isValidLetter(string letter);           //function that validate key
-bool isValidName(string name);              //function that validate pokemon name
-void changeLetterToUppercase(string &word); //function that change letter to uppercase. for validate type pokemon
-void showEmptyPokedexMessage();
+/*functions to validate data entry from user*/
+bool isValidNumber(int number);                 //validates number
+int isValidLetter(string letter);               //validates key
+bool isValidName(string name);                  //validates pokemon name
+void changeLetterToUppercase(string &word);     //changes letter to uppercase to validate pokemon type
+void showEmptyPokedexMessage();                 //shows a message so the user is warned that there aren´t any Pokemons loaded in the Pokedex
 
 int main() {
-    system("color 07");//Black background Color and white Text Color
+    system("color 07");     //Black background Color and white Text Color
     showLoadingBar();
 
     int current_register_length = 0;
@@ -149,7 +149,7 @@ void showPrincipalMenu(int menu_selector) {
         gotoxy (32 , 26);
         cout << "                  SALIR                  ";
     }
-    else if(menu_selector == 1){             //Set information for pokedex (menu)
+    else if(menu_selector == 1){            //Set information for Pokedex (menu)
         showHeaderMenu(menu_selector);
         Sleep(50);
         gotoxy (32 , 22);
@@ -161,7 +161,7 @@ void showPrincipalMenu(int menu_selector) {
         gotoxy (32 , 26);
         cout << "                 VOLVER                  ";
     }
-    else if(menu_selector == 2){             //Stats from pokedex (menu)
+    else if(menu_selector == 2){             //Stats from Pokedex (menu)
         showHeaderMenu(menu_selector);
         Sleep(50);
         gotoxy (32 , 22);
@@ -171,30 +171,30 @@ void showPrincipalMenu(int menu_selector) {
         cout << "   MOSTRAR CANTIDAD DE POKEMONES POR NIVEL ";
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "   MOSTRAR POKEMONES CON MAYOR/MENOR NIVEL    "; //Higher level and lower level
+        cout << "   MOSTRAR POKEMONES CON MAYOR/MENOR NIVEL    "; //Highest level and lowest level
     }
-    else if(menu_selector == 21){             //Stats from pokedex (menu)
+    else if(menu_selector == 21){             //Stats from Pokedex (menu)
         showHeaderMenu(menu_selector);
         Sleep(50);
         gotoxy (32 , 22);
         cout << "   MOSTRAR CANTIDAD DE POKEMONES DE CADA TIPO  ";
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "     MOSTRAR PROMEDIO DE NIVEL DE POKEMONES    ";
+        cout << "   MOSTRAR EL NIVEL PROMEDIO DE LOS POKEMONES   ";
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "                    VOLVER                     "; //Higher level and lower level
+        cout << "                    VOLVER                     ";
     }
-    else if(menu_selector == 23){             //Stats from pokedex ( sub menu from show pokemons group by type )
+    else if(menu_selector == 23){             //Stats from Pokedex ( sub menu from show pokemons group by type )
         showHeaderMenu(menu_selector);
         gotoxy (32 , 22);
-        cout << "   MOSTRAR POKEMONES MAS PODEROSOS POR TIPO "; // Higher level
+        cout << "   MOSTRAR POKEMONES MAS PODEROSOS POR TIPO ";      // Highest level
         Sleep(50);
         gotoxy (32 , 24);
-        cout << "    MOSTRAR POKEMONES MAS DEBILES POR TIPO   ";   // lower level
+        cout << "    MOSTRAR POKEMONES MAS DEBILES POR TIPO   ";     // Lowest level
         Sleep(50);
         gotoxy (32 , 26);
-        cout << "                  VOLVER                   "; // back to stats menu
+        cout << "                  VOLVER                   ";      // back to stats menu
     }
 }
 
@@ -247,7 +247,7 @@ void showHeaderMenu(int menu_selector) {
         cout << (char) 188; //Lower right corner
 
         gotoxy (20 , 15);
-        cout << "INGRESAR INFORMACION DEL POKEDEX MANUALMENTE";
+        cout << "INGRESAR INFORMACION AL POKEDEX MANUALMENTE";
     }
     else if (menu_selector == 12){
         gotoxy (19 , 14);
@@ -299,7 +299,7 @@ void showHeaderMenu(int menu_selector) {
         cout << (char) 188; //Lower right corner
 
         gotoxy (20 , 15);
-        cout << "CANTIDAD DE POKEMONS POR NIVEL";
+        cout << "CANTIDAD DE POKEMONES POR NIVEL";
     }
     else if (menu_selector == 23){
         gotoxy (19 , 14);
@@ -338,7 +338,7 @@ void showHeaderMenu(int menu_selector) {
         cout << (char) 188; //Lower right corner
 
         gotoxy (20 , 15);
-        cout << "PROMEDIO DE NIVEL DE CADA TIPO";
+        cout << "NIVEL PROMEDIO EN CADA TIPO";
     }
     else if (menu_selector == 231){
         gotoxy (19 , 14);
@@ -392,28 +392,28 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
         else if (menu_selector == 2){
             if (position == 1) {
                 menu_selector = 21;
-                showPrincipalMenu(menu_selector);                                                                       // show Pokemons divided by level
+                showPrincipalMenu(menu_selector);                                                                       // shows menu Pokemons divided by type
             }
-            else if (position == 2) computePokemonsGroupedByLevel(rPokemon, current_register_length);                   // show Pokemons Group By Max level, more than 500
+            else if (position == 2) computePokemonsGroupedByLevel(rPokemon, current_register_length);                   // shows Pokemons with level below 500, over 500 or equal to 500
             else if (position == 3){
                 menu_selector = 23;
-                showPrincipalMenu(menu_selector);                                                                       // show Pokemons divided by level
+                showPrincipalMenu(menu_selector);                                                                       // shows menu Pokemons with highest or lowest level
             }
         }
         else if (menu_selector == 21){
-            if (position == 1) computeQuantityOfPokemonsGroupedByType(rPokemon, current_register_length);               // show Pokemons Group By Type
-            else if (position == 2) computeLevelAverageOfPokemonsGroupedByType(rPokemon, current_register_length);      // show Pokemons AVERAGE
+            if (position == 1) computeQuantityOfPokemonsGroupedByType(rPokemon, current_register_length);               // shows how many Pokemons belong to each type
+            else if (position == 2) computeLevelAverageOfPokemonsGroupedByType(rPokemon, current_register_length);      // shows the average level in each type category
             else if (position == 3){
                 menu_selector = 2;
-                showPrincipalMenu(menu_selector);                                                                       // back to menu --> show pokemon statistics
+                showPrincipalMenu(menu_selector);                                                                       // back to menu --> show Pokemon statistics
             }
         }
         else if (menu_selector == 23){
-            if (position == 1) computePokemonsWithHighestLevel(rPokemon, current_register_length);                      // Show pokemon with the highest level
-            else if (position == 2) computePokemonsWithLowestLevel(rPokemon, current_register_length);                  // Show the pokemon with less level
+            if (position == 1) computePokemonsWithHighestLevel(rPokemon, current_register_length);                      // shows the Pokemon with the highest level
+            else if (position == 2) computePokemonsWithLowestLevel(rPokemon, current_register_length);                  // shows the Pokemon with the lowest level
             else if (position == 3){
                 menu_selector = 2;
-                showPrincipalMenu(menu_selector);                                                                       // back to menu --> show pokemon statistics
+                showPrincipalMenu(menu_selector);                                                                       // back to menu --> show Pokemon statistics
             }
         }
         resetPosition(position);
@@ -437,7 +437,7 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
 
 }
 
-/*  FUNCTIONS THAT CONTROL THE CURSOR   */
+/*  FUNCTIONS TO CONTROL THE CURSOR   */
 void gotoxy(int x,int y) {
     HANDLE hcon;
     hcon = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -465,7 +465,7 @@ void showCursor() {
     SetConsoleCursorInfo (hCon , &cci);
 }
 
-/*  FUNCTIONS THAT CONTROL POKEDEX INFORMATION   */
+/*  FUNCTIONS TO CONTROL POKEDEX INFORMATION   */
 void ShowTemplateToEnterNameFromFile(char * name_file) {
     system("CLS");
     showCursor();
@@ -509,11 +509,11 @@ void enterInformationIntoFile(tPokemon rPokemon[], int current_register_length) 
 
 void showMenuToEnterInformationFromUser(tPokemon rPokemon[], int &current_register_length) {
     system("CLS");
-    showHeaderMenu(11); //INGRESAR INFORMACION MANUALMENTE
+    showHeaderMenu(11); // "INGRESAR INFORMACION MANUALMENTE"
     showCursor();
     int quantity_limit_pokemons;
     gotoxy (32 , 22);
-    cout << "   CANTIDAD DE POKEMONS A INGRESAR: ";
+    cout << "   CANTIDAD DE POKEMONES A INGRESAR: ";
     cin >> quantity_limit_pokemons;
     for (int current_quantity = 0; current_quantity < quantity_limit_pokemons; current_quantity++){
         showHeaderQuantityRemainsToEnter(current_quantity, quantity_limit_pokemons);
@@ -604,79 +604,79 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
-    cout << " POKEMONS INGRESADOS " << current_quantity + 1 << " / " << quantity_limit_pokemons;
+    cout << " POKEMONES INGRESADOS " << current_quantity + 1 << " / " << quantity_limit_pokemons;
 }
 
-/*  FUNCTIONS THAT CALCULATE AND SHOW POKEDEX STATISTICS    */
+/*  FUNCTIONS TO COMPUTE AND SHOW POKEDEX STATISTICS    */
 /*  FIRST FUNCTIONS OR FIRST MENU   */
 void computeQuantityOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length) {
-    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0;
-    quantityOfPokemonsInThePokedex(rPokemon, current_register_length, contador_tierra, contador_fuego, contador_agua, contador_electrico);
-    current_register_length ? showQuantityOfPokemonsGroupedByType(contador_tierra, contador_fuego, contador_agua, contador_electrico) : showEmptyPokedexMessage();
+    int counter_t = 0, counter_f = 0, counter_a = 0, counter_e = 0;
+    quantityOfPokemonsInThePokedex(rPokemon, current_register_length, counter_t, counter_f, counter_a, counter_e);
+    current_register_length ? showQuantityOfPokemonsGroupedByType(counter_t, counter_f, counter_a, counter_e) : showEmptyPokedexMessage();
     showPrincipalMenu(21);
 }
 
-void showQuantityOfPokemonsGroupedByType(int contador_tierra, int contador_fuego, int contador_agua, int contador_electrico) {
+void showQuantityOfPokemonsGroupedByType(int counter_t, int counter_f, int counter_a, int counter_e) {
     system("CLS");
-    showHeaderMenu(211); //CANTIDAD DE POKEMONES DE CADA TIPO
+    showHeaderMenu(211); // "CANTIDAD DE POKEMONES DE CADA TIPO"
     gotoxy (32 , 22);
-    cout << " LA CANTIDAD DE POKEMONES TIPO TIERRA ES: " << contador_tierra;
+    cout << " LA CANTIDAD DE POKEMONES DE TIERRA ES: " << counter_t;
     gotoxy (32 , 24);
-    cout << " LA CANTIDAD DE POKEMONES TIPO FUEGO ES: " << contador_fuego;
+    cout << " LA CANTIDAD DE POKEMONES DE FUEGO ES: " << counter_f;
     gotoxy (32 , 26);
-    cout << " LA CANTIDAD DE POKEMONES TIPO AGUA ES: " << contador_agua;
+    cout << " LA CANTIDAD DE POKEMONES DE AGUA ES: " << counter_a;
     gotoxy (32 , 28);
-    cout << " LA CANTIDAD DE POKEMONES TIPO ELECTRICO ES: " << contador_electrico;
+    cout << " LA CANTIDAD DE POKEMONES ELECTRICOS ES: " << counter_e;
     gotoxy (32 , 32);
     system("PAUSE");
 }
 
-void quantityOfPokemonsInThePokedex(tPokemon rPokemon[], int current_register_length, int &contador_tierra, int &contador_fuego, int &contador_agua, int &contador_electrico) {
+void quantityOfPokemonsInThePokedex(tPokemon rPokemon[], int current_register_length, int &counter_t, int &counter_f, int &counter_a, int &counter_e) {
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "T")
-            contador_tierra ++;
+            counter_t ++;
         else if (rPokemon[i].type == "F")
-            contador_fuego ++;
+            counter_f ++;
         else if (rPokemon[i].type == "A")
-            contador_agua ++;
+            counter_a ++;
         else
-            contador_electrico ++;
+            counter_e ++;
     }
 }
 
 void computeLevelAverageOfPokemonsGroupedByType(tPokemon rPokemon[], int current_register_length) {
-    int contador_tierra = 0, contador_fuego = 0, contador_agua = 0, contador_electrico = 0, total_nivel_tierra = 0, total_nivel_fuego = 0, total_nivel_agua = 0, total_nivel_electrico = 0;
+    int counter_t = 0, counter_f = 0, counter_a = 0, counter_e = 0, total_level_t = 0, total_level_f = 0, total_level_a = 0, total_level_e = 0;
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon[i].type == "T")
-            total_nivel_tierra += rPokemon[i].level;
+            total_level_t += rPokemon[i].level;
         else if (rPokemon[i].type == "F")
-            total_nivel_fuego += rPokemon[i].level;
+            total_level_f += rPokemon[i].level;
         else if (rPokemon[i].type == "A")
-            total_nivel_agua += rPokemon[i].level;
+            total_level_a += rPokemon[i].level;
         else
-            total_nivel_electrico += rPokemon[i].level;
+            total_level_e += rPokemon[i].level;
     }
-    quantityOfPokemonsInThePokedex(rPokemon, current_register_length, contador_tierra, contador_fuego, contador_agua, contador_electrico);
+    quantityOfPokemonsInThePokedex(rPokemon, current_register_length, counter_t, counter_f, counter_a, counter_e);
 
-    int promedio_tierra = contador_tierra ? total_nivel_tierra / contador_tierra : 0;
-    int promedio_fuego = contador_fuego ? total_nivel_fuego / contador_fuego : 0;
-    int promedio_agua = contador_agua ? total_nivel_agua / contador_agua : 0;
-    int promedio_electrico = contador_electrico ? total_nivel_electrico / contador_electrico : 0;
-    current_register_length ? showLevelAverageOfPokemonsGroupedByType(promedio_tierra, promedio_fuego, promedio_agua, promedio_electrico) : showEmptyPokedexMessage();
+    int average_t = counter_t ? total_level_t / counter_t : 0;
+    int average_f = counter_f ? total_level_f / counter_f : 0;
+    int average_a = counter_a ? total_level_a / counter_a : 0;
+    int average_e = counter_e ? total_level_e / counter_e : 0;
+    current_register_length ? showLevelAverageOfPokemonsGroupedByType(average_t, average_f, average_a, average_e) : showEmptyPokedexMessage();
     showPrincipalMenu(21);
 }
 
-void showLevelAverageOfPokemonsGroupedByType(int promedio_tierra, int promedio_fuego, int promedio_agua, int promedio_electrico) {
+void showLevelAverageOfPokemonsGroupedByType(int average_t, int average_f, int average_a, int average_e) {
     system("CLS");
-    showHeaderMenu(212); //PROMEDIO DE POKEMONES
+    showHeaderMenu(212); // "PROMEDIO DE NIVEL DE CADA TIPO"
     gotoxy (32 , 22);
-    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO TIERRA ES: " << promedio_tierra;
+    cout << " EL PROMEDIO DEL NIVEL DE LOS POKEMONES DE TIERRA ES: " << average_t;
     gotoxy (32 , 24);
-    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO FUEGO ES: " << promedio_fuego;
+    cout << " EL PROMEDIO DEL NIVEL DE LOS POKEMONES DE FUEGO ES: " << average_f;
     gotoxy (32 , 26);
-    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO AGUA ES: " << promedio_agua;
+    cout << " EL PROMEDIO DEL NIVEL DE LOS POKEMONES DE AGUA ES: " << average_a;
     gotoxy (32 , 28);
-    cout << " EL PROMEDIO DE NIVELES DE POKEMONES TIPO ELECTRICO ES: " << promedio_electrico;
+    cout << " EL PROMEDIO DEL NIVEL DE LOS POKEMONES ELECTRICOS ES: " << average_e;
     gotoxy (32 , 32);
     system("PAUSE");
 }
@@ -698,13 +698,13 @@ void computePokemonsGroupedByLevel(tPokemon rPokemon[], int current_register_len
 
 void showPokemonsGroupedByLevel (int level_higher, int level_lower, int level_equal) {
     system ("CLS");
-    showHeaderMenu(22); //CANTIDAD DE POKEMONS POR NIVEL
+    showHeaderMenu(22); // "CANTIDAD DE POKEMONES POR NIVEL"
     gotoxy (32 , 22);
-    cout << "LA CANTIDAD DE POKEMONS CON NIVEL MAYOR A 500 ES: " << level_higher;
+    cout << "LA CANTIDAD DE POKEMONES CON NIVEL MAYOR A 500 ES: " << level_higher;
     gotoxy (32 , 24);
-    cout << "LA CANTIDAD DE POKEMONS CON NIVEL MENOR A 500 ES: " << level_lower;
+    cout << "LA CANTIDAD DE POKEMONES CON NIVEL MENOR A 500 ES: " << level_lower;
     gotoxy (32 , 26);
-    cout << "LA CANTIDAD DE POKEMONS CON NIVEL IGUAL A 500 ES: " << level_equal;
+    cout << "LA CANTIDAD DE POKEMONES CON NIVEL 500 ES: " << level_equal;
     gotoxy (32 , 30);
     system ("PAUSE");
 }
@@ -712,7 +712,7 @@ void showPokemonsGroupedByLevel (int level_higher, int level_lower, int level_eq
 /*  THIRD FUNCTIONS OR THIRD MENU   */
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
     int most_powerful_t = 0, most_powerful_f = 0, most_powerful_a = 0, most_powerful_e = 0;
-    //most powerful Pokémon earth type, most powerful Pokémon fire type, most powerful Pokémon water type, most powerful Pokémon electric type
+    //most powerful Pokemon earth type, most powerful Pokemon fire type, most powerful Pokemon water type, most powerful Pokemon electric type
 
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
@@ -738,7 +738,7 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
     int less_powerful_t = 1000, less_powerful_f = 1000, less_powerful_a = 1000, less_powerful_e = 1000;
-    //less powerful Pokémon earth type, less powerful Pokémon fire type, less powerful Pokémon water type, less powerful Pokémon electric type
+    //less powerful Pokemon earth type, less powerful Pokemon fire type, less powerful Pokemon water type, less powerful Pokemon electric type
     if (current_register_length == 0) showEmptyPokedexMessage();
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
@@ -766,13 +766,14 @@ void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokem
     system ("CLS");
     string power_measure;
     if (is_highest_or_lowest){
-        showHeaderMenu(231); //most powerful Pokemon by type
+        showHeaderMenu(231); // "POKEMON MAS PODEROSO POR TIPO"
         power_measure = "MAS ALTO";
     }
     else {
-        showHeaderMenu(232); //less powerful Pokemon by type
+        showHeaderMenu(232); // "POKEMON MAS DEBIL POR TIPO"
         power_measure = "MAS BAJO";
     }
+
     //string power_measure = is_highest_or_lowest ? "MAS ALTO" : "MAS BAJO";
     //is_highest_or_lowest ? showHeaderMenu(31) : showHeaderMenu(32);
 
@@ -783,12 +784,12 @@ void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokem
     gotoxy (32 , 26);
     cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << level_pokemon_a;
     gotoxy (32 , 28);
-    cout << "EL POKEMON DE ELECTRICO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_e;
+    cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_e;
     gotoxy (32 , 32);
     system ("PAUSE");
 }
 
-/*  FUNCTIONS THAT VALIDATE THE INFORMATION THAT IS ENTERED IN THE POKEDEX  */
+/*  FUNCTIONS TO VALIDATE THE INFORMATION ENTERED INTO THE POKEDEX  */
 bool isValidNumber(int number) {
     return (number <= 1000 && number >= 1);
 }
@@ -798,21 +799,19 @@ bool isValidName (string name) {
 }
 
 int isValidLetter(string letter) {
-    regex regex_letter_validation ("^[TtFfEeAa]");
+    regex regex_letter_validation ("[TtFfEeAa]");
     smatch match;
-    return regex_search(letter, match, regex_letter_validation);
+    return (letter.length() > 1) ? false : regex_search(letter, match, regex_letter_validation);
 }
 
 void changeLetterToUppercase(string &word) {
-    for (int i = 0; i < word.length(); i++){
-        //word[i] = ((int)word[i] > 96 && (int)word[i] < 123) ? (int)word[i] - 32 : word[i];
-        word[i] = toupper(word[i]);
-    }
+    //word[0] = ((int)word[0] > 96 && (int)word[0] < 123) ? (int)word[0] - 32 : word[0];
+    word[0] = toupper(word[0]);
 }
 
 void showEmptyPokedexMessage() {
     gotoxy (12 , 30);
-    cout << "   Todavia no ingresaste pokemones en el pokedex ";
+    cout << "   Todavia no se ingresaron Pokemones en el Pokedex ";
     system( "PAUSE");
 }
 
@@ -820,11 +819,11 @@ void showEmptyPokedexMessage() {
 void showLoadingBar() {
     system("CLS");
     gotoxy (40 , 19);
-    cout << " Please Wait... ";
+    cout << " Loading... ";
     Sleep(150);
 
     gotoxy (38 , 20);
-    for (int i = 0; i < 15; i++){
+    for (int i = 0; i < 10; i++){
         cout << (char) 219;
         Sleep(150);
     }

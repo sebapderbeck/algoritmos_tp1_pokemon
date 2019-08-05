@@ -1,42 +1,49 @@
 
 FUNCIONES PARA EL CONTROL DEL CURSOR
-    <1> gotoxy(): Esta funcion ubica el cursor en una posicion dentro de la consola, funciona como un eje de coordenadas.
+    <1> gotoxy(): Esta función ubica el cursor en una posición dentro de la consola, funciona como un eje de coordenadas.
     <2> hideCursor(): Oculta el cursor para no verlo titilar.
     <3> showCursor(): Muestra el cursor.
 
-FUNCIONES PARA EL CONTROL DE POSICION
-    <1> resetPosition(): Resetea la posicion del cursor para verlo en la posicion inicial.
-    <2> changePosition(): Cambia la posicion del cursor dentro de la posibilidad del menu.
-    <3> showNewPosition(): Muentra el icono del cursor en su nueva posicion.
-    <4> removeLastPosition(): Borra el icono del cursor anterior.
+FUNCIONES PARA EL CONTROL DE POSICIÓN
+    <1> resetPosition(): Resetea la posición del cursor para verlo en la posición inicial.
+    <2> changePosition(): Cambia la posición del cursor dentro de la posibilidad del menú.
+    <3> showNewPosition(): Muentra el ícono del cursor en su nueva posición.
+    <4> removeLastPosition(): Borra el ícono del cursor anterior.
 
-FUNCIONES PARA MOSTRAR Y SELECCIONAR MENU
-    <1> runPrincipalFunctions(): Ejecuta las funciones dependiendo en la posicion en la que el usuario apreto enter.
-    <2> showPrincipalMenu(): Muestra el menu en el que se encuentra.
-    <3> showHeaderMenu(): Muentra un encabezado para saber a cual era el menu anterior.
+FUNCIONES PARA MOSTRAR Y SELECCIONAR MENÚ
+    <1> runPrincipalFunctions(): Ejecuta las funciones dependiendo de la posición en la que el usuario apretó enter.
+    <2> showPrincipalMenu(): Muestra el menú en el que se encuentra.
+    <3> showHeaderMenu(): Muestra un encabezado para saber cuál era el menú anterior.
 
-FUNCIONES PARA INGRESAR O CARGAR INFORMACION
-    <1> getInformationFromFile(): Obtiene informacion de un archivo.
-    <2> showMenuToEnterInformationFromUser(): Obtiene informacion que se la pide al usuario.
-    <3> showTemplateToEnterInformationFromUser(): Muestra un formulario que debe llenar el usuario con la informacion que quiere cargar.
-    <4> showHeaderQuantityRemainsToEnter(): Muestra la cantidad de registros que esta faltan cargar dependiendo la cantidad que pidio el usuario cargar.
+FUNCIONES PARA INGRESAR O CARGAR INFORMACIÓN
+    <1> getInformationFromFile(): Obtiene información de un archivo.
+    <2> ShowTemplateToEnterNameFromFile(): Muestra un espacio para completar con el nombre del archivo del que se desea cargar la información.
+    <3> enterInformationIntoFile(): Ingresa nueva información en el archivo seleccionado.
+    <4> showMenuToEnterInformationFromUser(): Obtiene la información que se le pide al usuario.
+    <5> showTemplateToEnterInformationFromUser(): Muestra un formulario que debe llenar el usuario con la información que desea cargar.
+    <6> showHeaderQuantityRemainsToEnter(): Muestra cuántos registros falta cargar, dependiendo de la cantidad especificada por el usuario.
 
 FUNCIONES PARA MOSTRAR Y CALCULAR ESTADISTICAS
-    <1> showPokemonsGroupByType(): Muestra por pantalla la cantidad de Pokemón por cada tipo.
-    <2> showPokemonsGroupByMaxLevel(): Muestra la cantidad de Pokémons con nivel mayor a 500.
-    <3> showPokemonsGroupByMinLevel(): Muestra la cantidad de Pokémons con nivel menor a 500.
-    <4> showPokemonsGroupByLevel(): Muestra la cantidad de Pokémons con nivel igual a 500.
-    <5> showPokemonsWithHighestLevel(): Muestra el Pokémon más poderoso por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.
-    <6> showPokemonWithLessLevel(): Muestra el Pokémon más debil por tipo, es decir, con un nivel mayor dentro de todos del mismo tipo.
+    <1> computePokemonsGroupedByLevel(): Cuenta la cantidad de Pokémons cuyo nivel es mayor a 500, menor a 500 e igual a 500.
+    <2> showPokemonsGroupedByLevel(): Muestra en pantalla la cantidad de Pokémons cuyo nivel es mayor a 500, menor a 500 e igual a 500.
+    <3> computeQuantityOfPokemonsGroupedByType(): Cuenta la cantidad de Pokémons agrupados por tipo (tierra, fuego, agua y eléctrico).
+    <4> showQuantityOfPokemonsGroupedByType(): Muestra en pantalla la cantidad de Pokémons agrupados por tipo (tierra, fuego, agua y eléctrico).
+    <5> quantityOfPokemonsInThePokedex(): Cuenta la cantidad total de Pokémons cargados en el sistema.
+    <6> computeLevelAverageOfPokemonsGroupedByType(): Calcula el nivel promedio entre todos los Pokémons de un mismo tipo.
+    <7> showLevelAverageOfPokemonsGroupedByType(): Muestra en pantalla el nivel promedio entre todos los Pokémons de un mismo tipo.
+    <8> computePokemonsWithHighestLevel(): Calcula cuál es el Pokémon con el nivel más alto.
+    <9> computePokemonsWithLowestLevel(): Calcula cuál es el Pokémon con el nivel más bajo.
+    <10> showPokemonsWithHighestAndLowestLevel(): Muestra en pantalla el Pokémon con el nivel más alto y más bajo, según corresponda.
 
-FUNCIONES PARA VALIDAR LOS DATOS QUE INGRESA DEL USUARIO
-    <1> isValidNumber(): Valida que el numero sea positivo y menor a 1000
-    <2> isValidLetter(): Valida que la letra este dentro del rango posibles de letras a utilizar por el usuario
-    <3> isValidName(): Valida que el nombre contenga la cantidad de caracteres correspondientes
-    <4> changeLetterToUppercase(): Cambia el texto para que se muestre en mayuscula
+FUNCIONES PARA VALIDAR LOS DATOS QUE INGRESA EL USUARIO
+    <1> isValidNumber(): Valida que el número sea positivo y menor a 1000.
+    <2> isValidLetter(): Valida que la letra esté dentro del rango posible de letras a utilizar por el usuario.
+    <3> isValidName(): Valida que el nombre contenga la cantidad de caracteres correspondientes.
+    <4> changeLetterToUppercase(): Cambia el texto para que se muestre en mayúscula.
+    <5> showEmptyPokedexMessage(): Muestra un mensaje para indicar que no hay Pokémons ingresados en el Pokedex.
 
-FUNCIONES DE ANIMACION
-    <1> goodbyeMessage(): Muestra una animacion cuando el usuario sale del sistema
-    <2> initialAnimation(): Muestra una animacion cuando el usuario ingresa el sistema
-    <3> showLoadingBar(): Muestra una barra de carga
-    <4> userHelper(): Muestra un pequeño tutorial de que hace cada tecla
+FUNCIONES DE ANIMACIÓN
+    <1> initialAnimation(): Muestra una animación cuando el usuario ingresa en el sistema.
+    <2> showLoadingBar(): Muestra una barra de carga.
+    <3> userHelper(): Muestra un pequeño tutorial de qué hace cada tecla.
+    <4> goodbyeMessage(): Muestra una animación cuando el usuario sale del sistema.
