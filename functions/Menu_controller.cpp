@@ -799,9 +799,9 @@ bool isValidName (string name) {
 }
 
 int isValidLetter(string letter) {
-    regex regex_letter_validation ("[TtFfEeAa]");
+    regex regex_letter_validation ("^[TtFfEeAa]{1}$");
     smatch match;
-    return (letter.length() > 1) ? false : regex_search(letter, match, regex_letter_validation);
+    return regex_search(letter, match, regex_letter_validation);
 }
 
 void changeLetterToUppercase(string &word) {
