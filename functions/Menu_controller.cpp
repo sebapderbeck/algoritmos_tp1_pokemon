@@ -64,7 +64,7 @@ void showLevelAverageOfPokemonsGroupedByType(int contador_tierra, int contador_f
 
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length);                                                                             //looks at every Pokemon and returns the one with the highest level
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length);                                                                              //looks at every Pokemon and returns the one with the lowest level
-void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest);         //shows Pokemons with highest or lowest level
+void showPokemonsWithHighestAndLowestLevel(tPokemon rPokemon_temporal[], bool is_highest_or_lowest);
 
 /*functions to validate data entry from user*/
 bool isValidNumber(int number);                 //validates number
@@ -424,7 +424,7 @@ void runPrincipalFunctions(char key, int &position, int &menu_selector, tPokemon
             menu_selector = 0;
             showPrincipalMenu(menu_selector);
         }
-        else if (menu_selector == 22 || menu_selector == 23){
+        else if (menu_selector == 21 || menu_selector == 22 || menu_selector == 23){
             menu_selector = 2;
             showPrincipalMenu(menu_selector);
         }
@@ -711,80 +711,80 @@ void showPokemonsGroupedByLevel (int level_higher, int level_lower, int level_eq
 
 /*  THIRD FUNCTIONS OR THIRD MENU   */
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
-    int most_powerful_t = 0, most_powerful_f = 0, most_powerful_a = 0, most_powerful_e = 0;
+    tPokemon rPokemon_temporal[3];
+    rPokemon_temporal[0].level = 0; rPokemon_temporal[1].level = 0; rPokemon_temporal[2].level = 0; rPokemon_temporal[3].level = 0;
     //most powerful Pokemon earth type, most powerful Pokemon fire type, most powerful Pokemon water type, most powerful Pokemon electric type
 
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
-            if (rPokemon [i].level >= most_powerful_t)
-                most_powerful_t = rPokemon [i].level;
+            if (rPokemon [i].level >= rPokemon_temporal[0].level)
+                rPokemon_temporal [0] = rPokemon [i];
         }
         else if (rPokemon [i].type == "F"){
-            if (rPokemon [i].level >= most_powerful_f)
-                most_powerful_f = rPokemon [i].level;
+            if (rPokemon [i].level >= rPokemon_temporal[1].level)
+                rPokemon_temporal [1] = rPokemon [i];
         }
         else if (rPokemon [i].type == "A"){
-            if (rPokemon [i].level >= most_powerful_a)
-                most_powerful_a = rPokemon [i].level;
+            if (rPokemon [i].level >= rPokemon_temporal[2].level)
+                rPokemon_temporal [2] = rPokemon [i];
         }
         else if (rPokemon [i].type == "E"){
-            if (rPokemon [i].level >= most_powerful_e)
-                most_powerful_e = rPokemon [i].level;
+            if (rPokemon [i].level >= rPokemon_temporal[3].level)
+                rPokemon_temporal [3] = rPokemon [i];
         }
     }
-    current_register_length ? showPokemonsWithHighestAndLowestLevel(most_powerful_t, most_powerful_f, most_powerful_a, most_powerful_e, true) : showEmptyPokedexMessage();
+    current_register_length ? showPokemonsWithHighestAndLowestLevel(rPokemon_temporal, true) : showEmptyPokedexMessage();
     showPrincipalMenu(23);
 }
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
-    int less_powerful_t = 1000, less_powerful_f = 1000, less_powerful_a = 1000, less_powerful_e = 1000;
+    tPokemon rPokemon_temporal[3];
+    rPokemon_temporal [0].level = 1000; rPokemon_temporal [1].level = 1000; rPokemon_temporal [2].level = 1000; rPokemon_temporal [3].level = 1000;
     //less powerful Pokemon earth type, less powerful Pokemon fire type, less powerful Pokemon water type, less powerful Pokemon electric type
-    if (current_register_length == 0) showEmptyPokedexMessage();
+
     for (int i = 0; i < current_register_length; i++){
         if (rPokemon [i].type == "T"){
-            if (rPokemon [i].level <= less_powerful_t)
-                less_powerful_t = rPokemon [i].level;
+            if (rPokemon [i].level <= rPokemon_temporal[0].level)
+                rPokemon_temporal [0] = rPokemon [i];
         }
         else if (rPokemon [i].type == "F"){
-            if (rPokemon [i].level <= less_powerful_f)
-                less_powerful_f = rPokemon [i].level;
+            if (rPokemon [i].level <= rPokemon_temporal[1].level)
+                rPokemon_temporal [1] = rPokemon [i];
         }
         else if (rPokemon [i].type == "A"){
-            if (rPokemon [i].level <= less_powerful_a)
-                less_powerful_a = rPokemon [i].level;
+            if (rPokemon [i].level <= rPokemon_temporal[2].level)
+                rPokemon_temporal [2] = rPokemon [i];
         }
         else if (rPokemon [i].type == "E"){
-            if (rPokemon [i].level <= less_powerful_e)
-                less_powerful_e = rPokemon [i].level;
+            if (rPokemon [i].level <= rPokemon_temporal[3].level)
+                rPokemon_temporal[3] = rPokemon [i];
         }
     }
-    current_register_length ? showPokemonsWithHighestAndLowestLevel(less_powerful_t, less_powerful_f, less_powerful_a, less_powerful_e, false) : showEmptyPokedexMessage();
+    current_register_length ? showPokemonsWithHighestAndLowestLevel(rPokemon_temporal, false) : showEmptyPokedexMessage();
     showPrincipalMenu(23);
 }
 
-void showPokemonsWithHighestAndLowestLevel (int level_pokemon_t, int level_pokemon_f, int level_pokemon_a, int level_pokemon_e, bool is_highest_or_lowest) {
+void showPokemonsWithHighestAndLowestLevel (tPokemon rPokemon_temporal[], bool is_highest_or_lowest) {
     system ("CLS");
-    string power_measure;
-    if (is_highest_or_lowest){
-        showHeaderMenu(231); // "POKEMON MAS PODEROSO POR TIPO"
-        power_measure = "MAS ALTO";
-    }
-    else {
-        showHeaderMenu(232); // "POKEMON MAS DEBIL POR TIPO"
-        power_measure = "MAS BAJO";
+    string power_measure = is_highest_or_lowest ? "MAS ALTO" : "MAS BAJO";
+    is_highest_or_lowest ? showHeaderMenu(231) : showHeaderMenu(232);
+
+    for (int index = 0; index < 4; index ++){
+        if (!rPokemon_temporal[index].level != 0 && rPokemon_temporal[index].level != 1000){
+            rPokemon_temporal[index].name = "NO HAY POKEMONES INGRESADOS CON ESE TIPO";
+            rPokemon_temporal[index].level = NULL;
+        }
     }
 
-    //string power_measure = is_highest_or_lowest ? "MAS ALTO" : "MAS BAJO";
-    //is_highest_or_lowest ? showHeaderMenu(31) : showHeaderMenu(32);
 
     gotoxy (32 , 22);
-    cout << "EL POKEMON DE TIERRA CON EL NIVEL " << power_measure << " ES: " << level_pokemon_t;
+    cout << "EL POKEMON DE TIERRA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[0].name << " CON UN NIVEL DE " << rPokemon_temporal[0].level;
     gotoxy (32 , 24);
-    cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_f;
+    cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[1].name << " CON UN NIVEL DE " << rPokemon_temporal[1].level;
     gotoxy (32 , 26);
-    cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << level_pokemon_a;
+    cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[2].name << " CON UN NIVEL DE " << rPokemon_temporal[2].level;
     gotoxy (32 , 28);
-    cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << level_pokemon_e;
+    cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[3].name << " CON UN NIVEL DE " << rPokemon_temporal[3].level;
     gotoxy (32 , 32);
     system ("PAUSE");
 }
