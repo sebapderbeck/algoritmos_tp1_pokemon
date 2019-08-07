@@ -704,15 +704,15 @@ void showPokemonsGroupedByLevel (int level_higher, int level_lower, int level_eq
     gotoxy (32 , 24);
     cout << "LA CANTIDAD DE POKEMONES CON NIVEL MENOR A 500 ES: " << level_lower;
     gotoxy (32 , 26);
-    cout << "LA CANTIDAD DE POKEMONES CON NIVEL 500 ES: " << level_equal;
+    cout << "LA CANTIDAD DE POKEMONES CON NIVEL IGUAL A 500 ES: " << level_equal;
     gotoxy (32 , 30);
     system ("PAUSE");
 }
 
 /*  THIRD FUNCTIONS OR THIRD MENU   */
 void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_length) {
-    tPokemon rPokemon_temporal[3];
-    rPokemon_temporal[0].level = 0; rPokemon_temporal[1].level = 0; rPokemon_temporal[2].level = 0; rPokemon_temporal[3].level = 0;
+    tPokemon rPokemon_temporal[4];
+    rPokemon_temporal [0].level = 0; rPokemon_temporal [1].level = 0; rPokemon_temporal [2].level = 0; rPokemon_temporal [3].level = 0;
     //most powerful Pokemon earth type, most powerful Pokemon fire type, most powerful Pokemon water type, most powerful Pokemon electric type
 
     for (int i = 0; i < current_register_length; i++){
@@ -738,7 +738,7 @@ void computePokemonsWithHighestLevel(tPokemon rPokemon[], int current_register_l
 }
 
 void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_length) {
-    tPokemon rPokemon_temporal[3];
+    tPokemon rPokemon_temporal[4];
     rPokemon_temporal [0].level = 1000; rPokemon_temporal [1].level = 1000; rPokemon_temporal [2].level = 1000; rPokemon_temporal [3].level = 1000;
     //less powerful Pokemon earth type, less powerful Pokemon fire type, less powerful Pokemon water type, less powerful Pokemon electric type
 
@@ -764,27 +764,35 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
     showPrincipalMenu(23);
 }
 
-void showPokemonsWithHighestAndLowestLevel (tPokemon rPokemon_temporal[], bool is_highest_or_lowest) {
+void showPokemonsWithHighestAndLowestLevel(tPokemon rPokemon_temporal[], bool is_highest_or_lowest) {
     system ("CLS");
     string power_measure = is_highest_or_lowest ? "MAS ALTO" : "MAS BAJO";
     is_highest_or_lowest ? showHeaderMenu(231) : showHeaderMenu(232);
 
-    for (int index = 0; index < 4; index ++){
-        if (!rPokemon_temporal[index].level != 0 && rPokemon_temporal[index].level != 1000){
-            rPokemon_temporal[index].name = "NO HAY POKEMONES INGRESADOS CON ESE TIPO";
-            rPokemon_temporal[index].level = NULL;
-        }
-    }
-
-
     gotoxy (32 , 22);
-    cout << "EL POKEMON DE TIERRA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[0].name << " CON UN NIVEL DE " << rPokemon_temporal[0].level;
+    if (rPokemon_temporal[0].level && rPokemon_temporal[0].level != 1000)
+        cout << "EL POKEMON DE TIERRA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[0].name << " CON UN NIVEL DE " << rPokemon_temporal[0].level;
+    else
+        cout << "NO HAY POKEMONES DE TIPO TIERRA INGRESADOS ";
+
     gotoxy (32 , 24);
-    cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[1].name << " CON UN NIVEL DE " << rPokemon_temporal[1].level;
+    if (rPokemon_temporal[1].level && rPokemon_temporal[0].level != 1000)
+        cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[1].name << " CON UN NIVEL DE " << rPokemon_temporal[1].level;
+    else
+        cout << "NO HAY POKEMONES DE TIPO FUEGO INGRESADOS ";
+
     gotoxy (32 , 26);
-    cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[2].name << " CON UN NIVEL DE " << rPokemon_temporal[2].level;
+    if (rPokemon_temporal[2].level && rPokemon_temporal[0].level != 1000)
+        cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[2].name << " CON UN NIVEL DE " << rPokemon_temporal[2].level;
+    else
+        cout << "NO HAY POKEMONES DE TIPO AGUA INGRESADOS ";
+
     gotoxy (32 , 28);
-    cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[3].name << " CON UN NIVEL DE " << rPokemon_temporal[3].level;
+    if (rPokemon_temporal[3].level && rPokemon_temporal[0].level != 1000)
+        cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[3].name << " CON UN NIVEL DE " << rPokemon_temporal[3].level;
+    else
+        cout << "NO HAY POKEMONES DE TIPO ELECTRICO INGRESADOS ";
+
     gotoxy (32 , 32);
     system ("PAUSE");
 }
