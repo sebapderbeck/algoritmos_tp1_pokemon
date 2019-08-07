@@ -241,9 +241,9 @@ void showHeaderMenu(int menu_selector) {
         cout << (char) 201; //Upper left corner
         gotoxy (19 , 16);
         cout << (char) 200; //Lower left corner
-        gotoxy (64 , 14);
+        gotoxy (63 , 14);
         cout << (char) 187; //Upper right corner
-        gotoxy (64 , 16);
+        gotoxy (63 , 16);
         cout << (char) 188; //Lower right corner
 
         gotoxy (20 , 15);
@@ -598,9 +598,9 @@ void showHeaderQuantityRemainsToEnter(int current_quantity, int quantity_limit_p
     cout << (char) 201; //Upper left corner
     gotoxy (20 , 16);
     cout << (char) 200; //Lower left corner
-    gotoxy (46 , 14);
+    gotoxy (47 , 14);
     cout << (char) 187; //Upper right corner
-    gotoxy (46 , 16);
+    gotoxy (47 , 16);
     cout << (char) 188; //Lower right corner
 
     gotoxy (20 , 15);
