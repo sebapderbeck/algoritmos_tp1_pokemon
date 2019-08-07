@@ -760,6 +760,7 @@ void computePokemonsWithLowestLevel(tPokemon rPokemon[], int current_register_le
                 rPokemon_temporal[3] = rPokemon [i];
         }
     }
+
     current_register_length ? showPokemonsWithHighestAndLowestLevel(rPokemon_temporal, false) : showEmptyPokedexMessage();
     showPrincipalMenu(23);
 }
@@ -776,19 +777,19 @@ void showPokemonsWithHighestAndLowestLevel(tPokemon rPokemon_temporal[], bool is
         cout << "NO HAY POKEMONES DE TIPO TIERRA INGRESADOS ";
 
     gotoxy (32 , 24);
-    if (rPokemon_temporal[1].level && rPokemon_temporal[0].level != 1000)
+    if (rPokemon_temporal[1].level && rPokemon_temporal[1].level != 1000)
         cout << "EL POKEMON DE FUEGO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[1].name << " CON UN NIVEL DE " << rPokemon_temporal[1].level;
     else
         cout << "NO HAY POKEMONES DE TIPO FUEGO INGRESADOS ";
 
     gotoxy (32 , 26);
-    if (rPokemon_temporal[2].level && rPokemon_temporal[0].level != 1000)
+    if (rPokemon_temporal[2].level && rPokemon_temporal[2].level != 1000)
         cout << "EL POKEMON DE AGUA CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[2].name << " CON UN NIVEL DE " << rPokemon_temporal[2].level;
     else
         cout << "NO HAY POKEMONES DE TIPO AGUA INGRESADOS ";
 
     gotoxy (32 , 28);
-    if (rPokemon_temporal[3].level && rPokemon_temporal[0].level != 1000)
+    if (rPokemon_temporal[3].level && rPokemon_temporal[3].level != 1000)
         cout << "EL POKEMON ELECTRICO CON EL NIVEL " << power_measure << " ES: " << rPokemon_temporal[3].name << " CON UN NIVEL DE " << rPokemon_temporal[3].level;
     else
         cout << "NO HAY POKEMONES DE TIPO ELECTRICO INGRESADOS ";
