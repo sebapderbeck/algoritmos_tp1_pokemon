@@ -804,11 +804,13 @@ bool isValidNumber(int number) {
 }
 
 bool isValidName (string name) {
-    return (name.size() <= 10);
+    regex regex_name_validation ("^[a-zA-Z]{1,10}$");  //validate contain one letters switch (A to Z and less ten letters)
+    smatch match;
+    return regex_search(name, match, regex_name_validation);
 }
 
 int isValidLetter(string letter) {
-    regex regex_letter_validation ("^[TtFfEeAa]{1}$");
+    regex regex_letter_validation ("^[TtFfEeAa]{1}$"); //validate contain one letter switch (TtFfEeAa)
     smatch match;
     return regex_search(letter, match, regex_letter_validation);
 }
